@@ -23,8 +23,8 @@ require '../settings/config.php';
 				echo $error_mode;
 			}
 		}
-		$sql = "INSERT INTO supliers (suplier_name, suplier_address, suplier_contact, contact_person, note) VALUES (:suppliername,:customeraddress,:contactdesc,:contactnumber,:productprice)";
-		$stmt = $dbh->prepare($sql);
+		$sql = "INSERT INTO suppliers (supplier_name, supplier_address, supplier_contact, contact_person, note) VALUES (:suppliername,:customeraddress,:contactdesc,:contactnumber,:productprice)";
+		$stmt = $dbc->prepare($sql);
 		$stmt->bindParam(':suppliername',$suppliername);
 		$stmt->bindParam(':customeraddress',$customeraddress);
 		$stmt->bindParam(':contactdesc',$contactdesc);

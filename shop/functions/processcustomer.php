@@ -26,7 +26,7 @@ require '../settings/config.php';
 			}
 		}
 		$sql = "INSERT INTO customer (customer_name, address, contact, prod_name, expected_date, note) VALUES (:customername,:address,:contact,:productname,:expected_date,:note)";
-		$stmt = $dbh->prepare($sql);
+		$stmt = $dbc->prepare($sql);
 		$stmt->bindParam(':customername',$customername);
 		$stmt->bindParam(':address',$address);
 		$stmt->bindParam(':contact',$contact);

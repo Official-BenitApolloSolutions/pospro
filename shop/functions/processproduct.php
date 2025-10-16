@@ -46,7 +46,7 @@ require '../settings/config.php';
 			echo "successfully added record";
 			$_SESSION['session_status'] = $status_messages[1];
 			header('Location: ../view/products.php');
-			header('refresh: 0');
+			header('Refresh: 0');
 		} catch (PDOException $e) {
 			echo $sql . "<br>" . $e->getMessage();
 		}
