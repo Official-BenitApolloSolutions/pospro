@@ -55,10 +55,10 @@
                     <td><?php echo $row['customer_name'] ?></td>
                     <td><?php echo $row['address'] ?></td>
                     <td><?php echo $row['contact'] ?></td>
-                    <td><?php echo $row['membership_number'] ?></td>
                     <td><?php echo $row['prod_name'] ?></td>
-                    <td><?php echo $row['expected_date'] ?></td>
+                    <td><?php echo $row['membership_number'] ?></td>
                     <td><?php echo $row['note'] ?></td>
+                    <td><?php echo $row['expected_date'] ?></td>
                     <td>&nbsp;</td>
                   </tr>
               <?php } ?>

@@ -27,13 +27,13 @@
                 <select name="product" class='form-control form-control-lg' required>
                   <?php while ($row=$prodres->fetch_assoc()) {
                    ?>
-                  <option class="w-100" value="<?php echo $row['product_id'] ?>"><?php echo $row['product_code'] . " - " . $row['gen_name'] . " - " . $row['product_name'] . " | EXPIRES AT: " . $row['expiry_date']; ?></option>
+                  <option class="w-100" value="<?php echo $row['product_id']; ?>"><?php echo $row['product_code'] . " - " . $row['gen_name'] . " - " . $row['product_name'] . " | EXPIRES AT: " . $row['expiry_date']; ?></option>
                 <?php } ?>
                   <option selected disabled>Select a Product</option>
                 </select>
               </div>
               <div class='col-4 d-inline-flex'>
-                <input name="qty" class='form-control form-control-lg w-25' type='number' value='1' min="1" autocomplete="off" placeholder="Qty" required />
+                <input name="qty" class='form-control form-control-lg w-25' type='number' min="1" autocomplete="off" placeholder="Qty" required />
                 <button type="submit" name="submit" class='btn btn-outline-secondary w-50 ms-3 mt-2'>Add</button>
                 <!-- <div class='row'>
                   <div class='col'>
@@ -66,14 +66,14 @@
                   <?php while ($row=$orders->fetch_assoc()) {
                    ?>
                   <tr>
-                    <td><?php echo $row['transaction_id'] ?></td>
-                    <td><?php echo $row['product'] ?></td>
-                    <td><?php echo $row['gen_name'] ?></td>
+                    <td><?php echo $row['transaction_id']; ?></td>
+                    <td><?php echo $row['product']; ?></td>
+                    <td><?php echo $row['gen_name']; ?></td>
                     <td><?php echo $row['product_code']; ?></td>
                     <td><?php echo $row['price']; ?></td>
                     <td><?php echo $row['qty']; ?></td>
                     <td class='border-primary'><span class='text-muted'>0.00</span></td>
-                    <td class='border-primary'><span class='text-muted'>0.00</span></td>
+                    <td class='border-primary'><span class='text-muted'><?php echo $row['profit']; ?></span></td>
                     <td>&nbsp;</td>
                   </tr>
                 <?php } ?>
@@ -102,7 +102,36 @@
             </div>
             <input type="hidden" name="date_ordered" value="<?php echo date("m-d-Y") ?>">
             <div class='mt-4 d-flex'>
-              <button class='btn btn-success w-75 h-50 mx-auto'>SAVE</button>
+              <button type="button" class='btn btn-success w-75 h-50 mx-auto text-uppercase' data-bs-toggle="modal" data-bs-target="#confirm-order">save</button>
             </div>
           </form>
-      </main>
+</main>
+<div class="modal fade" id="confirm-order">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title mx-auto text-uppercase">confirm checkout</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="form-group mb-3">
+            <input type="text" class="form-control" placeholder="customer name" list="customer">
+            <datalist id="customer">
+              <?php while ($row=$cusres->fetch_assoc()) {
+              ?>
+              <option value="<?php echo $row['customer_name']; ?>"><?php echo $row['customer_name']; ?></option>
+            <?php } ?>
+            </datalist>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="cash" readonly>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info text-uppercase mx-auto">continue to checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
