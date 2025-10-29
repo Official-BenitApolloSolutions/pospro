@@ -52,7 +52,7 @@
                       <td><?php echo $row['supplier_address'] ?></td>
                       <td><?php echo $row['contact_person'] ?></td>
                       <td><?php echo $row['note'] ?></td>
-                      <td>&nbsp;</td>
+                      <td><div class="d-flex justify-content-between m-2"><button type="button" class="btn btn-outline-warning text-capitalize">edit</button><button type="button" class="btn btn-outline-danger text-capitalize">delete</button></div></td>
                   </tr>
                 <?php } ?>
                 </tbody>
@@ -70,22 +70,22 @@
         <form action='../functions/process_supplier.php' method='post'>
           <div class='form-group mb-2'>
             <label for='supplier_name'>Supplier Name</label>
-            <input class='form-control' name='supplier-name' type='text' placeholder='Enter supplier name'id='supplier_name'>
+            <input class='form-control' name='supplier_name' type='text' placeholder='Enter supplier name'id='supplier-name' required>
           </div>
           <div class='form-group mb-2'>
             <label for='address'>Address</label>
-            <input class='form-control' name='customer-address' type='text' placeholder='Enter address'id='address'>
+            <input class='form-control' name='supplier_address' type='text' placeholder='Enter address'id='address' required>
           </div>
           <div class='form-group mb-2'>
             <label for='contact_person'>Contact Person</label>
-            <input class='form-control' name='contact-description' type='text' placeholder='Enter contact person' id='contact_person'>
+            <input class='form-control' name='contact_description' type='text' placeholder='Enter contact person' id='contact_person' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='contact_number'>Contact No.</label>
-            <input class='form-control' name='contact-number' type='tel' placeholder='Enter contact number' id='contact_number'>
+            <label for='contact-number'>Contact No.</label>
+            <input class='form-control' name='contact_number' type='tel' placeholder='Enter contact number' id='contact-number' required>
           </div>
           <label for='notes'>Note</label>
-          <textarea class='form-control' name='product-price' type='text' placeholder='Enter a note' id='notes'></textarea>
+          <textarea class='form-control' name='supplier_note' placeholder='Enter a note' id='notes' required></textarea>
       </div>
       <div class='modal-footer'>
         <button class='btn btn-outline-danger' type='button' data-bs-dismiss='modal'>Cancel</button>

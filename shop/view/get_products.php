@@ -108,7 +108,7 @@
                 <td><?php echo $row["qty"]; ?></td>
                 <td><?php echo $row["onhand_qty"]; ?></td>
                 <td>&nbsp;</td>
-                <td><button class="btn btn-warning">update</button></td>
+                <td><div><button class="btn btn-warning">update</button></div>&nbsp;<div><button class="btn btn-outline-danger">Delete</button></div></td>
               </tr>
               <?php } ?>
                 </tbody>

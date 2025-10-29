@@ -59,7 +59,8 @@
                     <td><?php echo $row['membership_number'] ?></td>
                     <td><?php echo $row['note'] ?></td>
                     <td><?php echo $row['expected_date'] ?></td>
-                    <td>&nbsp;</td>
+                    <td><div><button class="btn btn-outline-warning text-capitalize">edit</button></div>&nbsp;
+                      <div><button class="btn btn-outline-danger text-capitalize">delete</button></div></td>
                   </tr>
               <?php } ?>
                 </tbody>

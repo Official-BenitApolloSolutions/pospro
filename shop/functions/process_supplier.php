@@ -2,20 +2,23 @@
 session_start();
 require '../settings/config.php';
 	if (isset($_POST['submit'])) {
-		$suppliername = $_POST['supplier-name'];
-		$customeraddress = $_POST['customer-address'];
-		$contactdesc = $_POST['contact-description'];
-		$contactnumber = $_POST['contact-number'];
-		$productprice = $_POST['product-price'];
+		$suppliername = $_POST['supplier_name'];
+		$supplieraddress = $_POST['supplier_address'];
+		$contactdesc = $_POST['contact_description'];
+		$contactnumber = $_POST['contact_number'];
+		$suppliernote = $_POST['supplier_note'];
 		$error_status = array();
 		$status_messages = ["Fields cannot be left empty","Successfully added supplier","Problems were encounted"];
-		if (empty($productbrand)) {
+		if (empty($suppliername)) {
 			array_push($error_status, $status_messages[0]);
 		}
-		if (empty($productname)) {
+		if (empty($supplieraddress)) {
 			array_push($error_status, $status_messages[0]);
 		}
-		if (empty($productdesc)) {
+		if (empty($contactdesc)) {
+			array_push($error_status, $status_messages[0]);
+		}
+		if (empty($contactnumber)) {
 			array_push($error_status, $status_messages[0]);
 		}
 		if (!empty($error_status)) {
@@ -23,15 +26,14 @@ require '../settings/config.php';
 				echo $error_mode;
 			}
 		}
-		$sql = "INSERT INTO suppliers (supplier_name, supplier_address, supplier_contact, contact_person, note) VALUES (:suppliername,:customeraddress,:contactdesc,:contactnumber,:productprice)";
+		$sql = "INSERT INTO suppliers (supplier_name, supplier_address, supplier_contact, contact_person, note) VALUES (:suppliername,:supplieraddress,:contactdesc,:contactnumber,:suppliernote)";
 		$stmt = $dbc->prepare($sql);
 		$stmt->bindParam(':suppliername',$suppliername);
-		$stmt->bindParam(':customeraddress',$customeraddress);
+		$stmt->bindParam(':supplieraddress',$supplieraddress);
 		$stmt->bindParam(':contactdesc',$contactdesc);
 		$stmt->bindParam(':contactnumber',$contactnumber);
-		$stmt->bindParam(':productprice',$productprice);
+		$stmt->bindParam(':suppliernote',$suppliernote);
 		try {
-
 			$stmt->execute();
 			echo "successfully added record";
 			$_SESSION['session_status'] = $status_messages[1];

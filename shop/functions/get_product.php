@@ -6,7 +6,7 @@
     
     if (isset($_SESSION['session_status'])) {
       $session_status = $_SESSION['session_status'];
-      $session_mes = "<div class='alert alert-dismissible fade show alert-success' role='alert'>$session_status<button data-bs-dismiss='alert' type='button' aria-label='close' class='btn-close'></button></div>";
+      $session_mes = "<div class='alert alert-dismissible fade show alert-success text-capitalize' role='alert'>$session_status<button data-bs-dismiss='alert' type='button' aria-label='close' class='btn-close'></button> at $timer, $today</div>";
     }else{
       $session_mes = "";
     }

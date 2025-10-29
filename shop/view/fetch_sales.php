@@ -33,7 +33,7 @@
                 </select>
               </div>
               <div class='col-4 d-inline-flex'>
-                <input name="qty" class='form-control form-control-lg w-25' type='number' min="1" autocomplete="off" placeholder="Qty" required />
+                <input name="qty" class='form-control form-control-lg w-25' type='number' min="1" autocomplete="off" placeholder="Qty" value="1" required />
                 <button type="submit" name="submit" class='btn btn-outline-secondary w-50 ms-3 mt-2'>Add</button>
                 <!-- <div class='row'>
                   <div class='col'>
@@ -72,9 +72,9 @@
                     <td><?php echo $row['product_code']; ?></td>
                     <td><?php echo $row['price']; ?></td>
                     <td><?php echo $row['qty']; ?></td>
-                    <td class='border-primary'><span class='text-muted'>0.00</span></td>
+                    <td class='border-primary'><span class='text-muted'><?php echo $row['amount']; ?></span></td>
                     <td class='border-primary'><span class='text-muted'><?php echo $row['profit']; ?></span></td>
-                    <td>&nbsp;</td>
+                    <td><button type="button" class="btn btn-warning">cancel</button></td>
                   </tr>
                 <?php } ?>
                 </tbody>
@@ -102,7 +102,7 @@
             </div>
             <input type="hidden" name="date_ordered" value="<?php echo date("m-d-Y") ?>">
             <div class='mt-4 d-flex'>
-              <button type="button" class='btn btn-success w-75 h-50 mx-auto text-uppercase' data-bs-toggle="modal" data-bs-target="#confirm-order">save</button>
+              <button type="button" class='btn btn-success w-75 h-50 mx-auto text-uppercase m-3' data-bs-toggle="modal" data-bs-target="#confirm-order">save</button>
             </div>
           </form>
 </main>
@@ -110,7 +110,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title mx-auto text-uppercase">confirm checkout</h3>
+        <h3 class="modal-title mx-auto text-uppercase">cash</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
@@ -125,12 +125,12 @@
             </datalist>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="cash" readonly>
+            <input type="number" class="form-control" placeholder="cash" min="1">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-info text-uppercase mx-auto">continue to checkout</button>
+        <button type="button" class="btn btn-outline-info text-uppercase mx-auto">save</button>
       </div>
     </div>
   </div>
