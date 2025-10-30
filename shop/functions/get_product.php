@@ -1,4 +1,5 @@
 <?php
+require_once '../settings/config.php';
     date_default_timezone_set("UTC");
     $hero = date_default_timezone_get();
     $today = date('l'); 
@@ -30,6 +31,24 @@
     $cusrownum = $cust->fetch_assoc();
 
     //orders
-     $orders = mysqli_query($conn, 'SELECT * FROM sales_order');
+     function getRandomPars(){
+      $chars = "003232303232023232023456789";
+      srand((double)microtime()*1000000);
+      $i = 0;
+      $pass = '' ;
+      while ($i <= 7) {
+
+        $num = rand() % 33;
+
+        $tmp = substr($chars, $num, 1);
+
+        $pass = $pass . $tmp;
+
+        $i++;
+
+      }
+      return $pass;
+    }
+     $invoice = '34' . getRandomPars();
 
 ?>

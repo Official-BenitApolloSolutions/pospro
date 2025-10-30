@@ -34,8 +34,8 @@
         <div class='col'>
           <div class='bg-body-tertiary p-3 rounded'>
             <small>Products sold: 0 units</small>
-            <div class='d-flex'>
-              <a class='btn btn-bd-primary mt-2 mx-auto' href='/products/shop/view/sales.php'>Add Sales</a>
+            <div class="d-flex">
+              <a class="btn btn-bd-primary mt-2 mx-auto" href="/products/shop/view/sales.php?id=cash&invoice=<?php echo $invoice; ?>">Add Sales</a>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@
           </div>
           <div class='form-group mb-2'>
             <label for='selling_price'>Selling Price</label>
-            <input class='form-control' name='selling-price' type='number' placeholder='0.00' id='selling_price' min="1">
+            <input class='form-control' name='selling-price' type='number' placeholder='0.00' id='selling_price' min="1" onchange="productProfit(event)">
           </div>
           <div class='form-group mb-2'>
             <label for='original_price'>Original Price</label>

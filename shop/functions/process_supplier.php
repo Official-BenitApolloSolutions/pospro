@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../settings/config.php';
+require_once '../settings/config.php';
 	if (isset($_POST['submit'])) {
 		$suppliername = $_POST['supplier_name'];
 		$supplieraddress = $_POST['supplier_address'];

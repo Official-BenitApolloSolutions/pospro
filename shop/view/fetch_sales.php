@@ -1,4 +1,5 @@
-<?php include '../functions/get_product.php'; ?>
+<?php include '../functions/get_product.php';
+      include '../functions/processorder.php'; ?>
 <main class='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
           <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
             <h1 class='h2'>
@@ -22,6 +23,7 @@
             </div>
           </div>
           <form name="addsales" action="../api/services/sales_order.php" method="post">
+            <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>">
             <div class='row'>
               <div class='col-8'>
                 <select name="product" class='form-control form-control-lg' required>
@@ -63,7 +65,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while ($row=$orders->fetch_assoc()) {
+                  <?php for ($i=0; $row = $orders->fetch() ; $i++) { 
                    ?>
                   <tr>
                     <td><?php echo $row['transaction_id']; ?></td>
@@ -92,9 +94,32 @@
                   </tr>
                   <tr>
                     <th colspan='6'>Total</th>
-                    <th class='border-primary'>0.00</th>
-                    <th class='border-primary'>0.00</th>
-                    <td>&nbsp;</td>
+                    <th class='border-primary'>
+                      <?php
+                        for ($i=0; $totalam = $resam->fetch(); $i++) { 
+                        $totalamount = $totalam['sum(amount)'];
+                        if ($totalamount) {
+                         echo $totalamount; 
+                        }else{
+                          echo "0.00";
+                        }
+                      }
+                      ?>
+                    </th>
+                    <th class='border-primary'><?php
+                      for ($i=0; $totalprof = $respro->fetch(); $i++) { 
+                        $totalprofit = $totalprof['sum(profit)'];
+                        if ($totalprofit) {
+                         echo $totalprofit; 
+                        }else{
+                          echo "0.00";
+                        }
+                      }
+                     ?>
+                     </th>
+                    <td>
+                      &nbsp;
+                    </td>
                     <td>&nbsp;</td>
                   </tr>
                 </tfoot>
