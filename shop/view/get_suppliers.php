@@ -1,10 +1,14 @@
-<?php include '../functions/get_product.php'; ?>
+<?php include '../functions/get_product.php';
+      if (isset($_SESSION['user_role'])) {
+        $user_role = $_SESSION['user_role'];
+      }
+?>
 <main class='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
           <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
             <h1 class='h2'>
               <nav aria-label='breadcrumb'>
                 <ol class='breadcrumb'>
-                  <li class='breadcrumb-item'><a href='./products.php' class='text-decoration-none text-muted'>Product</a></li>
+                  <li class='breadcrumb-item'><a href='./products.php?user_role=<?php echo $user_role ?>' class='text-decoration-none text-muted'>Product</a></li>
                   <li class='breadcrumb-item'>Suppliers</li>
                 </ol>
               </nav>
@@ -30,34 +34,39 @@
                 <button class='btn btn-outline-secondary w-50' type='button' data-bs-toggle='modal' data-bs-target='#add-supplier'>Add Supplier</button>
               </div>
             </div>
-            <div class='mt-5 table-responsive small'>
-              <table class='table table-striped table-sm' id='dash-activity'>
-                <thead>
-                  <tr>
-                    <th scope='col'>#</th>
-                    <th scope='col'>Supplier</th>
-                    <th scope='col'>Contact Person</th>
-                    <th scope='col'>Address</th>
-                    <th scope='col'>Contact No.</th>
-                    <th scope='col'>Note</th>
-                    <th scope='col'>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php while($row=$suplres->fetch_assoc()){ ?>
-                  <tr>
-                      <td><?php echo $row['supplier_id'] ?></td>
-                      <td><?php echo $row['supplier_name'] ?></td>
-                      <td><?php echo $row['supplier_contact'] ?></td>
-                      <td><?php echo $row['supplier_address'] ?></td>
-                      <td><?php echo $row['contact_person'] ?></td>
-                      <td><?php echo $row['note'] ?></td>
-                      <td><div class="d-flex justify-content-between m-2"><button type="button" class="btn btn-outline-warning text-capitalize">edit</button><button type="button" class="btn btn-outline-danger text-capitalize">delete</button></div></td>
-                  </tr>
-                <?php } ?>
-                </tbody>
-              </table>
-            </div>
+            <form action="../functions/process.php" method="post">
+              <div class='mt-5 table-responsive small'>
+                <table class='table table-striped table-sm' id='dash-activity'>
+                  <thead>
+                    <tr>
+                      <th scope='col'>#</th>
+                      <th scope='col'>Supplier</th>
+                      <th scope='col'>Contact Person</th>
+                      <th scope='col'>Address</th>
+                      <th scope='col'>Contact No.</th>
+                      <th scope='col'>Note</th>
+                      <th scope='col'>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                      while($row=$suplres->fetch_assoc()){ 
+                        $_SESSION['id'] = $row['supplier_id'];
+                    ?>
+                    <tr>
+                        <td><?php echo $row['supplier_id']; ?></td>
+                        <td><?php echo $row['supplier_name']; ?></td>
+                        <td><?php echo $row['supplier_contact']; ?></td>
+                        <td><?php echo $row['supplier_address']; ?></td>
+                        <td><?php echo $row['contact_person']; ?></td>
+                        <td><?php echo $row['note']; ?></td>
+                        <td><div class="d-flex justify-content-between m-2"><button type="submit" class="btn btn-outline-warning text-capitalize" name="edit_supplier">edit</button><button type="submit" class="btn btn-outline-danger text-capitalize" name="delete_supplier">delete</button></div></td>
+                    </tr>
+                  <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </form>
 </main>
 <div class='modal fade' id='add-supplier'>
   <div class='modal-dialog'>

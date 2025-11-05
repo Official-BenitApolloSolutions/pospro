@@ -1,11 +1,15 @@
 <?php include '../functions/get_product.php';
-      include '../functions/processorder.php'; ?>
+      include '../functions/processorder.php';
+      if (isset($_SESSION['user_role'])) {
+        $user_role = $_SESSION['user_role'];
+      }
+ ?>
 <main class='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
           <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
             <h1 class='h2'>
               <nav aria-label='breadcrumb'>
                 <ol class='breadcrumb'>
-                  <li class='breadcrumb-item'><a href='./products.php' class='text-decoration-none text-muted'>Product</a></li>
+                  <li class='breadcrumb-item'><a href='./products.php?user_role=<?php echo $user_role; ?>' class='text-decoration-none text-muted'>Product</a></li>
                   <li class='breadcrumb-item'>Sales</li>
                 </ol>
               </nav>
@@ -48,7 +52,7 @@
               </div>
             </div>
           </form>
-          <form>
+          <form method="post" action="../functions/cancel_order.php">
             <div class='mt-5 table-responsive small'>
               <table class='table table-striped table-sm' id='dash-activity'>
                 <thead>
@@ -66,6 +70,7 @@
                 </thead>
                 <tbody>
                   <?php for ($i=0; $row = $orders->fetch() ; $i++) { 
+                      $_SESSION['id'] = $row['transaction_id'];
                    ?>
                   <tr>
                     <td><?php echo $row['transaction_id']; ?></td>
@@ -76,7 +81,7 @@
                     <td><?php echo $row['qty']; ?></td>
                     <td class='border-primary'><span class='text-muted'><?php echo $row['amount']; ?></span></td>
                     <td class='border-primary'><span class='text-muted'><?php echo $row['profit']; ?></span></td>
-                    <td><button type="button" class="btn btn-warning">cancel</button></td>
+                    <td><button type="submit" class="btn btn-warning" name="cancel">cancel</button></td>
                   </tr>
                 <?php } ?>
                 </tbody>
@@ -141,7 +146,7 @@
       <div class="modal-body">
         <form action="">
           <div class="form-group mb-3">
-            <input type="text" class="form-control" placeholder="customer name" list="customer">
+            <input type="text" class="form-control text-capitalize" placeholder="enter customer name" list="customer">
             <datalist id="customer">
               <?php while ($row=$cusres->fetch_assoc()) {
               ?>
@@ -150,7 +155,7 @@
             </datalist>
           </div>
           <div class="form-group">
-            <input type="number" class="form-control" placeholder="cash" min="1">
+            <input type="number" class="form-control text-capitalize" placeholder="cash" min="1">
           </div>
         </form>
       </div>

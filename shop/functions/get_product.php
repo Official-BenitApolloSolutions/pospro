@@ -4,14 +4,20 @@ require_once '../settings/config.php';
     $hero = date_default_timezone_get();
     $today = date('l'); 
     $timer = date('Y.m.d H:i:s a');
-    
+    if (isset($_SESSION['id'])) {
+      $id = $_SESSION['id'];
+    }
+
     if (isset($_SESSION['session_status'])) {
       $session_status = $_SESSION['session_status'];
       $session_mes = "<div class='alert alert-dismissible fade show alert-success text-capitalize' role='alert'>$session_status<button data-bs-dismiss='alert' type='button' aria-label='close' class='btn-close'></button> at $timer, $today</div>";
     }else{
       $session_mes = "";
     }
+
     $conn = new mysqli("localhost","root","","sales");
+    
+    // products
     $prodres = mysqli_query($conn, 'SELECT * FROM products');
     $prodsqlcount = "SELECT SQL_CALC_FOUND_ROWS * FROM products";
     // $totalrows = $conn->query($prodsqlcount);
@@ -49,6 +55,13 @@ require_once '../settings/config.php';
       }
       return $pass;
     }
+
      $invoice = '34' . getRandomPars();
 
+    // update product
+     $fetchprod = "SELECT * FROM products WHERE product_id = :userid";
+     $stmt = $dbc->prepare($fetchprod);
+     $stmt->bindParam(":userid", $id);
+     $stmt->execute();
+     $uprow = $stmt->fetch();
 ?>

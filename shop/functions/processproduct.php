@@ -1,7 +1,8 @@
 <?php
 session_start();
 require '../settings/config.php';
-if (isset($_POST['submit'])) {
+
+if (isset($_POST['submit_product'])) {
 	$productbrand = getData($_POST['product-brand']);
 	$productname = getData($_POST['product-name']);
 	$productdesc = getData($_POST['product-description']);
@@ -73,6 +74,78 @@ if (isset($_POST['submit'])) {
 	}
 
 	$tbh = null;
+}else{
+	die("somehing");
+}
+
+// updates
+if (isset($_POST['update_product'])) {
+	$id = $_SESSION['id'];
+	$productbrand = getData($_POST['product-brand']);
+	$productname = getData($_POST['product-name']);
+	$productdesc = getData($_POST['product-description']);
+	$arrivaldate = getData($_POST['arrival-date']);
+	$expirydate = getData($_POST['expiry-date']);
+	$sellingprice = getData($_POST['selling-price']);
+	$originalprice = getData($_POST['original-price']);
+	$productprofit = getData($_POST['product-profit']);
+	$supplier = getData($_POST['supplier']);
+	$productqty = getData($_POST['product-quantity']);
+	$error_status = array();
+	$status_messages = ["Fields cannot be left empty","product brand cannot be left empty","supplier cannot be left empty","product quantity cannot be left empty","Successfully added record","Problems were encounted"];
+	if (empty($productbrand)) {
+		array_push($error_status, $status_messages[1]);
+	}
+	if (empty($productname)) {
+		array_push($error_status, $status_messages[0]);
+	}
+	if (empty($productdesc)) {
+		array_push($error_status, $status_messages[0]);
+	}
+	if (empty($arrivaldate)) {
+		array_push($error_status, $status_messages[0]);
+	}
+	if (empty($expirydate)) {
+		array_push($error_status, $status_messages[0]);
+	}
+	if (empty($sellingprice)) {
+		array_push($error_status, $status_messages[0]);
+	}
+	if (empty($originalprice)) {
+		array_push($error_status, $status_messages[0]);
+	}
+	if (empty($productprofit)) {
+		array_push($error_status, $status_messages[0]);
+	}
+	if (empty($supplier)) {
+		array_push($error_status, $status_messages[2]);
+	}
+	if (empty($productqty)) {
+		array_push($error_status, $status_messages[3]);
+	}
+	if (!empty($error_status)) {
+		foreach ($error_status as $error_mode) {
+			$_SESSION['error_status'] = $error_mode;
+		}
+	}
+     $sql = "UPDATE products SET product_name = :productname, gen_name = :brandname, product_code = :productdesc, supplier = :supplier, date_arrival = :date_arrival, expiry_date = :expiry_date, o_price = :o_price, price = :price, profit = :profit, qty = :prodquantity WHERE product_id = :userid";
+     try {
+       $stmt=$dbc->prepare($sql);
+       $stmt->bindValue(":productname",$productname, PDO::PARAM_STR);
+       $stmt->bindValue(":brandname", $brandname, PDO::PARAM_STR);
+       $stmt->bindValue(":productdesc", $productdesc, PDO::PARAM_STR);
+       $stmt->bindValue(":supplier", $supplier, PDO::PARAM_STR);
+       $stmt->bindValue(":date_arrival", $date_arrival, PDO::PARAM_STR);
+       $stmt->bindValue(":expiry_date", $expiry_date, PDO::PARAM_STR);
+       $stmt->bindValue(":o_price", $originalprice, PDO::PARAM_STR);
+       $stmt->bindValue(":price", $sellingprice, PDO::PARAM_STR);
+       $stmt->bindValue(":profit", $productprofit, PDO::PARAM_STR);
+       $stmt->bindValue(":prodquantity", $productqty, PDO::PARAM_INT);
+       $stmt->execute();
+       header("Refresh: 0");
+     } catch (PDOException $e) {
+       echo "error: " . $e->getMessage();
+     }
 }
 function getData($data){
 	$data = trim($data);

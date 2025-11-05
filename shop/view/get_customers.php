@@ -33,39 +33,44 @@
                 <button class='btn btn-outline-secondary w-50' type='button' data-bs-toggle='modal' data-bs-target='#add-customer'>Add Customer</button>
               </div>
             </div>
-            <div class='table-responsive small'>
-              <table class='table table-striped table-sm' id='dash-activity'>
-                <thead>
-                  <tr>
-                    <th scope='col'>#</th>
-                    <th scope='col'>Fullname</th>
-                    <th scope='col'>Address</th>
-                    <th scope='col'>Contact Number</th>
-                    <th scope='col'>Product Name</th>
-                    <th scope='col'>Total</th>
-                    <th scope='col'>Note</th>
-                    <th scope='col'>Due Date</th>
-                    <th scope='col'>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php while($row=$cusres->fetch_assoc()){ ?>
-                  <tr>
-                    <td><?php echo $row['customer_id'] ?></td>
-                    <td><?php echo $row['customer_name'] ?></td>
-                    <td><?php echo $row['address'] ?></td>
-                    <td><?php echo $row['contact'] ?></td>
-                    <td><?php echo $row['prod_name'] ?></td>
-                    <td><?php echo $row['membership_number'] ?></td>
-                    <td><?php echo $row['note'] ?></td>
-                    <td><?php echo $row['expected_date'] ?></td>
-                    <td><div><button class="btn btn-outline-warning text-capitalize">edit</button></div>&nbsp;
-                      <div><button class="btn btn-outline-danger text-capitalize">delete</button></div></td>
-                  </tr>
-              <?php } ?>
-                </tbody>
-              </table>
-            </div>
+            <form action="../functions/process.php" method="post">
+              <div class='table-responsive small'>
+                <table class='table table-striped table-sm' id='dash-activity'>
+                  <thead>
+                    <tr>
+                      <th scope='col'>#</th>
+                      <th scope='col'>Fullname</th>
+                      <th scope='col'>Address</th>
+                      <th scope='col'>Contact Number</th>
+                      <th scope='col'>Product Name</th>
+                      <th scope='col'>Total</th>
+                      <th scope='col'>Note</th>
+                      <th scope='col'>Due Date</th>
+                      <th scope='col'>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                        while($row=$cusres->fetch_assoc()){ 
+                        $_SESSION['id'] = $row['customer_id'];
+                    ?>
+                    <tr>
+                      <td><?php echo $row['customer_id']; ?></td>
+                      <td><?php echo $row['customer_name']; ?></td>
+                      <td><?php echo $row['address']; ?></td>
+                      <td><?php echo $row['contact']; ?></td>
+                      <td><?php echo $row['prod_name']; ?></td>
+                      <td><?php echo $row['membership_number']; ?></td>
+                      <td><?php echo $row['note']; ?></td>
+                      <td><?php echo $row['expected_date']; ?></td>
+                      <td><div><button type="submit" class="btn btn-outline-warning text-capitalize" name="edit_customer">edit</button></div>&nbsp;
+                        <div><button type="submit" class="btn btn-outline-danger text-capitalize" name="delete_customer">delete</button></div></td>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </form>
           </div>
 </main>
 <div class='modal fade' id='add-customer'>

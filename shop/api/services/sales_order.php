@@ -8,6 +8,14 @@
 		$productid = $_POST['product'];
 		$invoice = $_POST['invoice'];
 		$date = date("Y-m-d H:i:s a");
+		$user_role = "";
+		if (isset($_SESSION['user_role'])) {
+			$user_role = $_SESSION['user_role'];
+		}
+		$uri = "../../view/sales.php?user_role=$user_role&id=cash&invoice=$invoice";
+		$path = urlencode($uri);
+		$route = urldecode($path);
+		$sql = "SELECT * FROM products WHERE product_id = :productid";
 			try{
 
 				// for ($i=0; $rowpro = $respro->fetch(); $i++) { 
@@ -15,7 +23,6 @@
 				// 	$_SESSION['profit_'] = (int)$totalprofit_;
 				// }
 
-				$sql = "SELECT * FROM products WHERE product_id = :productid";
 				$stmt = $dbc->prepare($sql);
 		    	$stmt->bindValue(":productid", $productid, PDO::PARAM_INT);
 		    	$stmt->execute();
@@ -45,9 +52,12 @@
 
 		    	// redirect
 		    	echo "successfully inserted";
-				header("Location: ../../view/sales.php?id=cash&invoice=$invoice");
+		    	session_start();
+				$_SESSION['invoice'] = $invoice;
+				header("Location: $route");
 			}catch(PDOException $e){
-				die("error: " . $e->getMessage());
+				// die("error: " . $e->getMessage());
+				header("Location: $route");
 			}
 	}else{
 		die("something went wrong");

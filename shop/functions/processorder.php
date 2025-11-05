@@ -6,6 +6,7 @@
      $orders = $dbc->prepare($res);
      $orders->bindValue(":userid", $id, PDO::PARAM_INT);
      $orders->execute();
+     
     // fetch profits
      $respro = $dbc->prepare("SELECT sum(profit) FROM sales_order WHERE invoice = :userid");
         $respro->bindValue(":userid",$id, PDO::PARAM_INT);
