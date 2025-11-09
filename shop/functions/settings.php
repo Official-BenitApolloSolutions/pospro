@@ -56,4 +56,9 @@
   function OrdersPage(){
     RouteOrders();
   }
+
+  // sale preview
+  function salePreview(){
+    loadPreview();
+  }
 ?>

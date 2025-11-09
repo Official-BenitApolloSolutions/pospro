@@ -49,7 +49,6 @@
 		    	$stmt2->bindValue(':productprice', $productprice, PDO::PARAM_INT);
 		    	$stmt2->bindValue(':date', $date, PDO::PARAM_STR);
 		    	$stmt2->execute();
-
 		    	// redirect
 		    	echo "successfully inserted";
 		    	session_start();

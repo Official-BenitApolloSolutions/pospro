@@ -1,5 +1,6 @@
 <?php include '../functions/get_product.php';
       include '../functions/processorder.php';
+      $user_role = "";
       if (isset($_SESSION['user_role'])) {
         $user_role = $_SESSION['user_role'];
       }
@@ -102,20 +103,20 @@
                     <th class='border-primary'>
                       <?php
                         for ($i=0; $totalam = $resam->fetch(); $i++) { 
-                        $totalamount = $totalam['sum(amount)'];
-                        if ($totalamount) {
-                         echo $totalamount; 
-                        }else{
-                          echo "0.00";
+                          $totalamount = $totalam['totalamount'];
+                          if ($totalamount) {
+                           echo $totalamount; 
+                          }else{
+                            echo "0.00";
+                          }
                         }
-                      }
                       ?>
                     </th>
                     <th class='border-primary'><?php
                       for ($i=0; $totalprof = $respro->fetch(); $i++) { 
-                        $totalprofit = $totalprof['sum(profit)'];
+                        $totalprofit = $totalprof['totalprofit'];
                         if ($totalprofit) {
-                         echo $totalprofit; 
+                         echo $totalprofit;
                         }else{
                           echo "0.00";
                         }
@@ -144,9 +145,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="">
+        <form action="../functions/preview.php" method="post">
+          <input type="hidden" name="payment_type" value="<?php echo $_GET['id']; ?>">
+          <input type="hidden" name="date_ordered" value="<?php echo date('Y-m-d'); ?>">
+          <input type="hidden" name="totalamount" value="<?php echo $totalamount; ?>">
+          <input type="hidden" name="totalprofit" value="<?php echo $totalprofit; ?>">
           <div class="form-group mb-3">
-            <input type="text" class="form-control text-capitalize" placeholder="enter customer name" list="customer">
+            <input name="customer" type="text" class="form-control text-capitalize" placeholder="enter customer name" list="customer">
             <datalist id="customer">
               <?php while ($row=$cusres->fetch_assoc()) {
               ?>
@@ -155,12 +160,12 @@
             </datalist>
           </div>
           <div class="form-group">
-            <input type="number" class="form-control text-capitalize" placeholder="cash" min="1">
+            <input type="number" name="cash" class="form-control text-capitalize" placeholder="cash" min="1" required>
+          </div>
+          <div class="form-group mb-2 mt-4 d-flex justify-content-center">
+            <button type="submit" class="btn btn-outline-success text-uppercase" name="save">save</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-info text-uppercase mx-auto">save</button>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 <?php
     include '../functions/get_product.php';
+    $user_role = "";
     if (isset($_SESSION['user_role'])) {
       $user_role = $_SESSION['user_role'];
     }

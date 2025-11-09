@@ -454,4 +454,8 @@
 				</html>";
 			print($footer);
 	}
+
+	function loadPreview(){
+		processPreview();
+	}
 ?>

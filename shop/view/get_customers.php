@@ -74,34 +74,34 @@
           </div>
 </main>
 <div class='modal fade' id='add-customer'>
-<div class='modal-dialog'>
-  <div class='modal-content'>
-    <div class='modal-header'>
-      <h3 class='modal-title'>Add Customer</h3>
-      <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
-    </div>
-    <div class='modal-body'>
-      <form action='../functions/processcustomer.php' method='post'>
-        <label for='customer_name'>Full Name</label>
-        <input class='form-control' name='customer-name' type='text' placeholder='Enter full name' id='customer_name'>
-        <label for='address'>Address</label>
-        <input class='form-control' name='address' type='text' placeholder='Enter address'id='address'>
-        <label for='contact_person'>Contact</label>
-        <input class='form-control' name='contact' type='tel' placeholder='Enter contact' id='contact_person'>
-        <label for='product_name'>Product Name</label>
-        <textarea class='form-control' name='product-name' type='text' id='product_name'></textarea>
-        <label for='total'>Total</label>
-        <input class='form-control' name='total' type='number' min="0" autocomplete="off" placeholder='Total' id='total'>
-        <label for='notes'>Note</label>
-        <textarea class='form-control' name='note' type='text' placeholder='Enter a note' id='notes'></textarea>
-        <label for='expected_date'>Expected Date</label>
-        <input class='form-control' name='expected-date' type='date' id='expected_date'>
-    </div>
-    <div class='modal-footer'>
-      <button class='btn btn-outline-danger' type='button' data-bs-dismiss='modal'>Cancel</button>
-      <button class='btn btn-outline-secondary' name='submit' type='submit'>Save</button>
-      </form>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h3 class='modal-title'>Add Customer</h3>
+        <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
+      </div>
+      <div class='modal-body'>
+        <form action='../functions/processcustomer.php' method='post'>
+          <label for='customer_name'>Full Name</label>
+          <input class='form-control' name='customer-name' type='text' placeholder='Enter full name' id='customer_name'>
+          <label for='address'>Address</label>
+          <input class='form-control' name='address' type='text' placeholder='Enter address'id='address'>
+          <label for='contact_person'>Contact</label>
+          <input class='form-control' name='contact' type='tel' placeholder='Enter contact' id='contact_person'>
+          <label for='product_name'>Product Name</label>
+          <textarea class='form-control' name='product-name' type='text' id='product_name'></textarea>
+          <label for='total'>Total</label>
+          <input class='form-control' name='total' type='number' min="0" autocomplete="off" placeholder='Total' id='total'>
+          <label for='notes'>Note</label>
+          <textarea class='form-control' name='note' type='text' placeholder='Enter a note' id='notes'></textarea>
+          <label for='expected_date'>Expected Date</label>
+          <input class='form-control' name='expected-date' type='date' id='expected_date'>
+      </div>
+      <div class='modal-footer'>
+        <button class='btn btn-outline-danger' type='button' data-bs-dismiss='modal'>Cancel</button>
+        <button class='btn btn-outline-secondary' name='submit' type='submit'>Save</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </div>
