@@ -4,13 +4,27 @@
     $user_role = "";
     $date = "";
     if (isset($_SESSION['user_role'])) {
-      $user_role = $_SESSION['user_role'];
+      $user_role = $_SESSION['user_role']; 
     }
     if (isset($_SESSION['date_ordered'])) {
       $date = $_SESSION['date_ordered'];
     }
 ?>
+<style>
+  @media print{
+    #print-now{
+      display: none;
+    }
+    #heading{
+      display: none;
+    }
+    #print-nav{
+      display: none;
+    }
+  }
+</style>
 <main class='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
+  <div id="print-nav">
     <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
       <h1 class='h2'>
         <nav aria-label='breadcrumb'>
@@ -32,6 +46,7 @@
         </button>
       </div>
     </div>
+  </div>
     <div class="container">
       <h3 class="text-center text-capitalize">sales receipt</h3>
       <p class="text-capitalize text-center">city, town.</p>
@@ -108,7 +123,9 @@
           </tr>
         </tfoot>
       </table>
-      <button class="btn btn-outline-success text-capitalize float-end me-5 mb-3 mt-3">print</button>
+      <div class="print-btn" id="print-button">
+        <button class="btn btn-outline-success text-capitalize float-end me-5 mb-3 mt-3" type="button" id="print-now">print</button>
+      </div>
     </div>
     </div>
 </main>

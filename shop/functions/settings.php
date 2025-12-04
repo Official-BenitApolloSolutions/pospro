@@ -32,6 +32,10 @@
     loadProducts();
   }
 
+  function showSettings(){
+    loadSettings();
+  }
+
   function showSales(){
     loadSales();
   }

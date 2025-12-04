@@ -22,6 +22,10 @@
     include '../view/get_products.php';
 	}
 
+  function processSettings(){
+    include '../view/view_settings.php';
+  }
+
   function processSales(){
     include '../view/fetch_sales.php';
   }

@@ -95,7 +95,7 @@
           <label class="form-check-label" for="checkDefault">Remember me</label>
         </div>
         <button class="btn btn-primary w-100 py-2" name="submit" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2025</p>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2027</p>
       </form>
     </main>
     <script src="../assets/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>

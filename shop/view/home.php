@@ -18,7 +18,7 @@
           <div class="table-responsive small">
             <table class="table table-striped table-sm">
               <thead>
-                <tr>
+                <tr id="dashboard-header">
                   <th scope="col">#</th>
                   <th scope="col">Header</th>
                   <th scope="col">Header</th>

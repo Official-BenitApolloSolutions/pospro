@@ -4,6 +4,8 @@
 	if (isset($_POST['submit'])) {
 		// $productname = $_POST['product'];
 		// include '../../functions/get_product.php';
+		print_r($_POST);
+		
 		$productqty = $_POST['qty'];
 		$productid = $_POST['product'];
 		$invoice = $_POST['invoice'];
@@ -55,7 +57,7 @@
 				$_SESSION['invoice'] = $invoice;
 				header("Location: $route");
 			}catch(PDOException $e){
-				// die("error: " . $e->getMessage());
+				die("error: " . $e->getMessage());
 				header("Location: $route");
 			}
 	}else{
