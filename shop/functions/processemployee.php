@@ -11,13 +11,16 @@
 		$password = getData($_POST['password']);
 		$institutiondesc = getData($_POST['institution-description']);
 		$establishmentdate = getData($_POST['establishment-date']);
+		$filename = $_FILES['logo']['tmp_name'];
+		if (move_uploaded_file($filename, '../resources/comp_img/logo.jpg')) {
+			$_SESSION['logo'] = $filename;
+		}
 		$institutiontype = getData($_POST['institution_type']);
 		$employeenumber = getData($_POST['employee-number']);
 		// $originalprice = getData($_POST['original-price']);
 		// $productprofit = getData($_POST['product-profit']);
 		// $supplier = getData($_POST['supplier']);
 		// $productqty = getData($_POST['product-quantity']);
-		// $filename = $_FILES['logo']['name'];
 		$error_status = array();
 		$status_messages = ["Fields cannot be left empty","Address cannot be left empty","Contact information cannot be left empty","tax id cannot be left empty","Successfully added record","Problems were encounted"];
 		if (empty($institutionname)) {

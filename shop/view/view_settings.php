@@ -211,7 +211,7 @@
           </div>
           <div class='form-group mb-2'>
             <label for='logo'>Logo</label>
-            <input class='form-control' name='logo' type='file' id='logo'>
+            <input class='form-control' name='logo' type='file' id='logo' accept='image/jpeg'>
           </div>
           <div class='form-group mb-2'>
             <label for='tax_id'>Tax Id</label>
