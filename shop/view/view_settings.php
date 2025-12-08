@@ -1,5 +1,6 @@
 <?php
     include '../functions/get_product.php';
+    include '../functions/account.php';
     $user_role = "";
     if (isset($_SESSION['user_role'])) {
       $user_role = $_SESSION['user_role'];
@@ -31,7 +32,13 @@
 	          <div class='bg-body-tertiary rounded p-3'>
 	            <h4 class='text-center fs-5 fw-bold'>Store Info</h4><br/>
 	            <div class='d-flex'>
-	              <button class='btn btn-bd-primary mt-2 mx-auto' data-bs-toggle='modal' data-bs-target='#add-product'>Edit</button>
+                <?php
+                  if ($rowsnum < 1) {
+                    echo "<button class='btn btn-bd-primary mt-2 mx-auto' data-bs-toggle='modal' data-bs-target='#add-to-account'>Edit</button>";
+                  }else{
+                    echo "<button class='btn btn-bd-primary mt-2 mx-auto' data-bs-toggle='modal' data-bs-target='#update-account'>Update</button>";
+                  }
+                ?>
 	            </div>
 	          </div>
 	        </div>
@@ -188,7 +195,7 @@
     </div> -->
 </main>
 <!-- add product -->
-<div class='modal fade' id='add-product'>
+<div class='modal fade' id='add-to-account'>
   <div class='modal-dialog'>
     <div class='modal-content'>
       <div class='modal-header'>
@@ -284,7 +291,7 @@
   </div>
 </div>
 <!-- update product -->
-<div class='modal fade' id='update-product'>
+<div class='modal fade' id='update-account'>
   <div class='modal-dialog'>
     <div class='modal-content'>
       <div class='modal-header'>
@@ -292,57 +299,87 @@
         <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
       </div>
       <div class='modal-body'>
-        <form action='../functions/processproduct.php' method='post'>
+        <form action='../functions/processemployee.php' method='post' enctype="multipart/form-data">
           <div class='form-group mb-2'>
-            <label for='product_brand'>Brand Name</label>
-            <input class='form-control' name='product-brand' type='text' placeholder='Enter product brand' id='upproduct_brand' value="<?php echo $uprow['gen_name']; ?>" required>
+            <label for='institution_name'>Institution Name</label>
+            <input class='form-control' name='institution-name' type='text' placeholder='Enter institution name' id='institution_name' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='product_name'>Product Name</label>
-            <input class='form-control' name='product-name' type='text' placeholder='Enter product name' id='upproduct_name' value='<?php echo $uprow['product_name']; ?>' required>
+            <label for='address'>Address</label>
+            <input class='form-control' name='address' type='text' placeholder='Enter address' id='address' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='product_desc'>Product Description</label>
-            <input class='form-control' name='product-description' type='text' placeholder='Enter product category / description' id='upproduct_desc' value='<?php echo $uprow["product_code"]; ?>' required>
+            <label for='contact_info'>Contact Info</label>
+            <input class='form-control' name='contact_info' type='tel' placeholder='Enter contact information' id='contact_info' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='date_of_arrival'>Date of Arrival</label>
-            <input class='form-control' name='arrival-date' type='date' id='dateup_of_arrival' value='<?php echo $uprow["date_arrival"]; ?>' required>
+            <label for='logo'>Logo</label>
+            <input class='form-control' name='logo' type='file' id='logo' accept='image/jpeg'>
           </div>
           <div class='form-group mb-2'>
+            <label for='tax_id'>Tax Id</label>
+            <input class='form-control' name='tax_id' type='text' id='tax_id' placeholder="Enter tax id" required>
+          </div>
+          <div class='form-group mb-2'>
+            <label for='currency'>Currency</label>
+            <input type="text" class="form-control" name="currency" id="currency" list="currencies" placeholder="Enter currency" required>
+            <datalist id="currencies">
+              <option value="GHS">Ghana Cedi</option>
+              <option value="USD">US Dollar</option>
+              <option value="EUR">Euro</option>
+              <option value="GBP">British Pound</option>
+              <option></option>
+            </datalist>
+          </div>
+          <div class='form-group mb-2'>
+            <label for='username'>Username</label>
+            <input class='form-control' name='username' type='text' placeholder='Enter product name'id='username' required>
+          </div>
+          <div class='form-group mb-2'>
+            <label for='password'>Password</label>
+            <input class='form-control' name='password' type='password' placeholder='Enter password'id='password' required>
+          </div>
+          <div class='form-group mb-2'>
+            <label for='institution_desc'>Institution Description</label>
+            <textarea class="form-control" name="institution-description" placeholder="institution description" id="institution_desc" required></textarea>
+          </div>
+          <div class='form-group mb-2'>
+            <label for='date_of_establishment'>Business Inception Date</label>
+            <input class='form-control' name='establishment-date' type='date' id='date_of_establishment' required>
+          </div>
+          <!-- <div class='form-group mb-2'>
             <label for='expiry_date'>Expiry Date</label>
-            <input class='form-control' name='expiry-date' type='date' id='expiry_dateup' value='<?php echo $uprow["expiry_date"]; ?>' required>
+            <input class='form-control' name='expiry-date' type='date' id='expiry_date' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='up_price'>Selling Price</label>
-            <input class='form-control' name='selling-price' type='number' placeholder='0.00' id='up_price' min="1" onchange="productProfitUpdate(event)" value="<?php echo $uprow["price"]; ?>">
+            <label for='selling_price'>Selling Price</label>
+            <input class='form-control' name='selling-price' type='number' placeholder='0.00' id='selling_price' min="1" onchange="productProfit(event)">
           </div>
           <div class='form-group mb-2'>
-            <label for='up_cost'>Original Price</label>
-            <input class='form-control' name='original-price' type='number' placeholder='0.00' id='up_cost' min="1" onchange="productProfitUpdate(event)" value="<?php echo $uprow["o_price"]; ?>">
+            <label for='original_price'>Original Price</label>
+            <input class='form-control' name='original-price' type='number' placeholder='0.00' id='original_price' min="1" onchange="productProfit(event)">
           </div>
           <div class='form-group mb-2'>
             <label for='profit'>Profit</label>
-            <input class='form-control' name='product-profit' type='number' id='upprofit' placeholder="0.00" value="<?php echo $uprow["profit"]; ?>" readonly>
-          </div>
+            <input class='form-control' name='product-profit' type='number' id='profit' placeholder="0.00" readonly>
+          </div> -->
           <div class='form-group mb-2'>
-            <label for='supplier'>Supplier</label>
-            <select class='form-control' name='supplier' required>
-              <option selected disabled>select supplier</option>
-              <?php 
-                while($upsrow = $suplres->fetch_assoc()){
-              ?>
-              <option value='<?php echo $upsrow['supplier_name']; ?>'><?php echo $upsrow['supplier_name']; ?></option>
-            <?php } ?>
+            <label for='institution'>Institution Type</label>
+            <select class='form-control' name='institution_type' required>
+              <option selected disabled>select institution type</option>
+              <option value="sole proprietor">Sole Proprietor</option>
+              <option value="partnership">Partnership</option>
+              <option value="public company">Public Company</option>
+              <option value="private company">Private Company</option>
             </select>
           </div>
           <div class='form-group mb-2'>
-            <label for='product_quantity'>Quantity</label>
-            <input class='form-control' name='product-quantity' type='number' id='product_quantity' placeholder="1 item" min="0" value="<?php echo $uprow["qty"]; ?>" required>
+            <label for='employee_number'>Number of employees</label>
+            <input class='form-control' name='employee-number' type='number' id='employee_number' placeholder="total number of employees" min="0" required>
           </div>
-          <div class="form-group mb-2 d-flex justify-content-center">
-            <button class='btn btn-outline-danger' type='button' data-bs-dismiss='modal'>Cancel</button>
-            <button class='btn btn-outline-secondary' name='update_product' type='submit'>Save</button>
+          <div class="form-group mt-4 d-flex justify-content-center">
+            <button class='btn btn-outline-danger me-3' type='button' data-bs-dismiss='modal'>Cancel</button>
+            <button class='btn btn-outline-secondary' name='update_info' type='submit'>Update</button>
           </div>
         </form>
       </div>
