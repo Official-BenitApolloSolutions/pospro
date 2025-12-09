@@ -251,22 +251,6 @@
             <label for='date_of_establishment'>Business Inception Date</label>
             <input class='form-control' name='establishment-date' type='date' id='date_of_establishment' required>
           </div>
-          <!-- <div class='form-group mb-2'>
-            <label for='expiry_date'>Expiry Date</label>
-            <input class='form-control' name='expiry-date' type='date' id='expiry_date' required>
-          </div>
-          <div class='form-group mb-2'>
-            <label for='selling_price'>Selling Price</label>
-            <input class='form-control' name='selling-price' type='number' placeholder='0.00' id='selling_price' min="1" onchange="productProfit(event)">
-          </div>
-          <div class='form-group mb-2'>
-            <label for='original_price'>Original Price</label>
-            <input class='form-control' name='original-price' type='number' placeholder='0.00' id='original_price' min="1" onchange="productProfit(event)">
-          </div>
-          <div class='form-group mb-2'>
-            <label for='profit'>Profit</label>
-            <input class='form-control' name='product-profit' type='number' id='profit' placeholder="0.00" readonly>
-          </div> -->
           <div class='form-group mb-2'>
             <label for='institution'>Institution Type</label>
             <select class='form-control' name='institution_type' required>
@@ -299,10 +283,10 @@
         <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
       </div>
       <div class='modal-body'>
-        <form action='../functions/processemployee.php' method='post' enctype="multipart/form-data">
+        <form action='../functions/updateaccount.php' method='post' enctype="multipart/form-data">
           <div class='form-group mb-2'>
             <label for='institution_name'>Institution Name</label>
-            <input class='form-control' name='institution-name' type='text' placeholder='Enter institution name' id='institution_name' required>
+            <input class='form-control' name='institution-name' type='text' placeholder='Enter institution name' required>
           </div>
           <div class='form-group mb-2'>
             <label for='address'>Address</label>
@@ -349,13 +333,13 @@
           </div>
           <div class='form-group mb-2'>
             <label for='institution'>Institution Type</label>
-            <select class='form-control' name='institution_type' required>
-              <option selected disabled>select institution type</option>
+            <input class="form-control" type="text" placeholder="Enter type of institution" name="institution_type" required list="institution_type" id="institution">
+            <datalist id="institution_type">
               <option value="sole proprietor">Sole Proprietor</option>
               <option value="partnership">Partnership</option>
               <option value="public company">Public Company</option>
               <option value="private company">Private Company</option>
-            </select>
+            </datalist>
           </div>
           <div class='form-group mb-2'>
             <label for='employee_number'>Number of employees</label>
@@ -363,7 +347,7 @@
           </div>
           <div class="form-group mt-4 d-flex justify-content-center">
             <button class='btn btn-outline-danger me-3' type='button' data-bs-dismiss='modal'>Cancel</button>
-            <button class='btn btn-outline-secondary' name='update_info' type='submit'>Update</button>
+            <button class='btn btn-outline-secondary' type='submit'>Update</button>
           </div>
         </form>
       </div>
@@ -372,21 +356,8 @@
 </div>
 
 <script type="text/javascript">
-  function productProfit(e){
-    e.preventDefault();
-
-    let originalprice = document.querySelector('#original_price').value;
-    let sellingprice = document.querySelector('#selling_price').value;
-    let profit = sellingprice - originalprice;
-    document.querySelector('#profit').value = profit;
-  } 
-
-  function productProfitUpdate(e){
-    e.preventDefault();
-
-    let originalprice = document.querySelector('#up_cost').value;
-    let sellingprice = document.querySelector('#up_price').value;
-    let profit = sellingprice - originalprice;
-    document.querySelector('#upprofit').value = profit;
-  }
+  const intstitutiontype = document.getElementById("institution");
+  intstitutiontype.addEventListener('invalid', (event)=>{
+    event.target.setCustomValidity('Please select institution type');
+  });
 </script>
