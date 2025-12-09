@@ -347,22 +347,6 @@
             <label for='date_of_establishment'>Business Inception Date</label>
             <input class='form-control' name='establishment-date' type='date' id='date_of_establishment' required>
           </div>
-          <!-- <div class='form-group mb-2'>
-            <label for='expiry_date'>Expiry Date</label>
-            <input class='form-control' name='expiry-date' type='date' id='expiry_date' required>
-          </div>
-          <div class='form-group mb-2'>
-            <label for='selling_price'>Selling Price</label>
-            <input class='form-control' name='selling-price' type='number' placeholder='0.00' id='selling_price' min="1" onchange="productProfit(event)">
-          </div>
-          <div class='form-group mb-2'>
-            <label for='original_price'>Original Price</label>
-            <input class='form-control' name='original-price' type='number' placeholder='0.00' id='original_price' min="1" onchange="productProfit(event)">
-          </div>
-          <div class='form-group mb-2'>
-            <label for='profit'>Profit</label>
-            <input class='form-control' name='product-profit' type='number' id='profit' placeholder="0.00" readonly>
-          </div> -->
           <div class='form-group mb-2'>
             <label for='institution'>Institution Type</label>
             <select class='form-control' name='institution_type' required>

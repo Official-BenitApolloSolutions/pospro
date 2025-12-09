@@ -11,16 +11,12 @@
 				    <?php 
 				    	if ($res->num_rows > 0){ 
 				    		while($row = $res->fetch_assoc()) {
-				    ?>
-			    <title>
-				    <?php  
-			    				echo "Dashboard · " . $row["Institution_name"] . " v5.3";
-			    			}
+				    			echo"<title>Dashboard · ". $row['Institution_name'] ." v5.3</title>";
+				    		}
 				    	}else{
-				    			echo "Dashboard · company v5.3";
-						} 
-					?> 
-				</title>
+				    		echo "<title>Dashboard · company v5.3</title>";
+				    	}
+				    ?>
 			    <link rel='canonical' href='https://benitapollosolutions/products/'>
 			    <script src='/products/shop/assets/js/color-modes.js'></script>
 			    <script src='/products/shop/assets/js/jquery-3.7.1.min.js'></script>
