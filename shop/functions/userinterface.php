@@ -269,10 +269,6 @@
 		processProducts();
 	}
 
-	function loadSettings(){
-		processSettings();
-	}
-
 	function loadSales(){
 		processSales();
 	}
@@ -306,5 +302,14 @@
 
 	function loadPreview(){
 		processPreview();
+	}
+
+	// management
+	function loadSettings(){
+		processSettings();
+	}
+	
+	function loadUsers(){
+		processUsers();
 	}
 ?>

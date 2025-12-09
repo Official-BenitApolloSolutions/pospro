@@ -75,4 +75,26 @@
 			header("Location: $route");
 		}
 	}
+
+	if (isset($_POST['delete_user'])) {
+		if (isset($_SESSION['user_role'])) {
+			$user_role = $_SESSION['user_role'];
+		}
+		if (isset($_SESSION['id'])) {
+			$id = $_SESSION['id'];
+		}
+		$uri = "../view/user_management.php?user_role=$user_role";
+		$path = urlencode($uri);
+		$route = urldecode($path);
+		$sql = "DELETE FROM user_account WHERE user_id = :userid";
+		try{
+			$stmt = $dbc->prepare($sql);
+			$stmt->bindValue(":userid", $id, PDO::PARAM_INT);
+			$stmt->execute();
+			header("Location: $route");
+		}catch(PDOException $e){
+			echo "Exception: " . "<br>" . $sql . $e->getMessage();
+			header("Location: $route");
+		}
+	}
 ?>

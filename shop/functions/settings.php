@@ -56,6 +56,11 @@
     loadFooter();
   }
 
+  // management
+  function showUsers(){
+    loadUsers();
+  }
+
   // routes
   function OrdersPage(){
     RouteOrders();

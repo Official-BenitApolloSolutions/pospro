@@ -22,10 +22,6 @@
     include '../view/get_products.php';
 	}
 
-  function processSettings(){
-    include '../view/view_settings.php';
-  }
-
   function processSales(){
     include '../view/fetch_sales.php';
   }
@@ -44,6 +40,15 @@
 
   function processPreview(){
     include '../view/fetch_preview.php';
+  }
+
+  // management
+  function processSettings(){
+    include '../view/view_settings.php';
+  }
+  
+  function processUsers(){
+    include '../view/users.php';
   }
 
   ?>

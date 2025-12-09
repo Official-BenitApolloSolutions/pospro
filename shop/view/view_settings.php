@@ -30,13 +30,13 @@
         <div class='row mt-3'>
 	        <div class='col'>
 	          <div class='bg-body-tertiary rounded p-3'>
-	            <h4 class='text-center fs-5 fw-bold'>Store Info</h4><br/>
+	            <h4 class='text-center fs-5 fw-bold'>Store Info</h4>
 	            <div class='d-flex'>
                 <?php
                   if ($rowsnum < 1) {
-                    echo "<button class='btn btn-bd-primary mt-2 mx-auto' data-bs-toggle='modal' data-bs-target='#add-to-account'>Edit</button>";
+                    echo "<button class='btn btn-bd-primary m-3 mx-auto' data-bs-toggle='modal' data-bs-target='#add-to-account'>Edit</button>";
                   }else{
-                    echo "<button class='btn btn-bd-primary mt-2 mx-auto' data-bs-toggle='modal' data-bs-target='#update-account'>Update</button>";
+                    echo "<button class='btn btn-bd-primary m-3 mx-auto' data-bs-toggle='modal' data-bs-target='#update-account'>Update</button>";
                   }
                 ?>
 	            </div>
@@ -46,7 +46,7 @@
 	          <div class='bg-body-tertiary p-3 rounded'>
 	            <h4 class="text-center fs-5 fw-bold">Payment Options</h4>
 	            <div class="d-flex">
-	              <a class="btn btn-bd-primary mt-2 mx-auto" href="/products/shop/view/sales.php?user_role=<?php echo $user_role; ?>&id=cash&invoice=<?php echo $invoice; ?>">Edit</a>
+	              <a class="btn btn-bd-primary m-3 mx-auto" href="/products/shop/view/sales.php?user_role=<?php echo $user_role; ?>&id=cash&invoice=<?php echo $invoice; ?>">Edit</a>
 	            </div>
 	          </div>
 	        </div>
@@ -54,7 +54,7 @@
 	          <div class='bg-body-tertiary p-3 rounded'>
 	            <h4 class="text-center fs-5 fw-bold">Reporting</h4>
 	            <div class='d-flex'>
-	              <a class='btn btn-bd-primary mt-2 mx-auto' href='supplier.php?user_role=<?php echo $user_role; ?>&id=cash'>Edit</a>
+	              <a class='btn btn-bd-primary m-3 mx-auto' href='supplier.php?user_role=<?php echo $user_role; ?>&id=cash'>Edit</a>
 	            </div>
 	          </div>
 	        </div>
@@ -62,7 +62,7 @@
 	          <div class='bg-body-tertiary p-3 rounded'>
 	            <h4 class="text-center fs-5 fw-bold">Sync and Backup</h4>
 	            <div class='d-flex'>
-	              <a class='btn btn-bd-primary mt-2 mx-auto' href='supplier.php?user_role=<?php echo $user_role; ?>&id=cash'>Edit</a>
+	              <a class='btn btn-bd-primary m-3 mx-auto' href='supplier.php?user_role=<?php echo $user_role; ?>&id=cash'>Edit</a>
 	            </div>
 	          </div>
 	        </div>
@@ -70,9 +70,9 @@
       	<div class='row mt-3'>
 	        <div class='col'>
 	          <div class='bg-body-tertiary rounded p-3'>
-	            <h4 class='text-center fs-5 fw-bold'>Tax Settings</h4><br/>
+	            <h4 class='text-center fs-5 fw-bold'>Tax Settings</h4>
 	            <div class='d-flex'>
-	              <button class='btn btn-bd-primary mt-2 mx-auto' data-bs-toggle='modal' data-bs-target='#add-product'>Edit</button>
+	              <button class='btn btn-bd-primary m-3 mx-auto' data-bs-toggle='modal' data-bs-target='#add-product'>Edit</button>
 	            </div>
 	          </div>
 	        </div>
@@ -80,7 +80,7 @@
 	          <div class='bg-body-tertiary p-3 rounded'>
 	            <h4 class="text-center fs-5 fw-bold">Inventory</h4>
 	            <div class="d-flex">
-	              <a class="btn btn-bd-primary mt-2 mx-auto" href="/products/shop/view/sales.php?user_role=<?php echo $user_role; ?>&id=cash&invoice=<?php echo $invoice; ?>">Edit</a>
+	              <a class="btn btn-bd-primary m-3 mx-auto" href="/products/shop/view/inventory.php?user_role=<?php echo $user_role; ?>&id=cash&invoice=<?php echo $invoice; ?>">Edit</a>
 	            </div>
 	          </div>
 	        </div>
@@ -88,7 +88,7 @@
 	          <div class='bg-body-tertiary p-3 rounded'>
 	            <h4 class="text-center fs-5 fw-bold">Receipt Settings</h4>
 	            <div class='d-flex'>
-	              <a class='btn btn-bd-primary mt-2 mx-auto' href='supplier.php?user_role=<?php echo $user_role; ?>&id=cash'>Edit</a>
+	              <a class='btn btn-bd-primary m-3 mx-auto' href='supplier.php?user_role=<?php echo $user_role; ?>&id=cash'>Edit</a>
 	            </div>
 	          </div>
 	        </div>
@@ -96,7 +96,7 @@
 	          <div class='bg-body-tertiary p-3 rounded'>
 	            <h4 class="text-center fw-bold fs-5">User Management</h4>
 	            <div class='d-flex'>
-	              <a class='btn btn-bd-primary mt-2 mx-auto' href='supplier.php?user_role=<?php echo $user_role; ?>&id=cash'>Edit</a>
+	              <a class='btn btn-bd-primary m-3 mx-auto' href='user_management.php?user_role=<?php echo $user_role; ?>&id=cash'>Edit</a>
 	            </div>
 	          </div>
 	        </div>
@@ -265,7 +265,7 @@
             <label for='employee_number'>Number of employees</label>
             <input class='form-control' name='employee-number' type='number' id='employee_number' placeholder="total number of employees" min="0" required>
           </div>
-          <div class="form-group mt-4 d-flex justify-content-center">
+          <div class="form-group m-3 d-flex justify-content-center">
             <button class='btn btn-outline-danger me-3' type='button' data-bs-dismiss='modal'>Cancel</button>
             <button class='btn btn-outline-secondary' name='submit_info' type='submit'>Save</button>
           </div>
@@ -345,9 +345,11 @@
             <label for='employee_number'>Number of employees</label>
             <input class='form-control' name='employee-number' type='number' id='employee_number' placeholder="total number of employees" min="0" required>
           </div>
-          <div class="form-group mt-4 d-flex justify-content-center">
-            <button class='btn btn-outline-danger me-3' type='button' data-bs-dismiss='modal'>Cancel</button>
-            <button class='btn btn-outline-secondary' type='submit'>Update</button>
+          <div class="form-group d-flex justify-content-center">
+            <div class="m-3">
+              <button class='btn btn-outline-danger me-5' type='button' data-bs-dismiss='modal'>Cancel</button>
+              <button class='btn btn-outline-secondary' type='submit'>Update</button>
+            </div>
           </div>
         </form>
       </div>

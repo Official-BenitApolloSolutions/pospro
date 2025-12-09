@@ -82,8 +82,7 @@
 				}
 
 				$tbh = null;
-			}
-		
+			}	
 	}
 	else{
 		die("ENCOUNTERED Problems");
