@@ -2,12 +2,8 @@
 	session_start();
 	require '../settings/config.php';
     $user_role = "";
-    $id = "";
 	if (isset($_SESSION['user_role'])) {
       $user_role = $_SESSION['user_role']; 
-    }
-    if (isset($_SESSION['id'])) {
-    	$id = $_SESSION['id'];
     }
 
     // add user
@@ -80,6 +76,7 @@
 
 	// update user
 	if (isset($_POST['submit_user'])) {
+		$id = getData($_POST['id']);
 		$fullname = getData($_POST['fullname']);
 		$address = getData($_POST['address']);
 		$contact_info = getData($_POST['contact']);

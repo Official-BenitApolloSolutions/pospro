@@ -24,11 +24,11 @@ require_once '../settings/config.php';
     $st = $conn->query("SELECT found_rows() AS totalRows");
     $rownum = $st->fetch_assoc();
 
-    //supplier
-    $suplres = mysqli_query($conn, 'SELECT * FROM suppliers');
-    $suplsqlcount = "SELECT SQL_CALC_FOUND_ROWS * FROM suppliers";
-    $suplst = $conn->query("SELECT found_rows() AS totalRows");
-    $suplrownum = $suplst->fetch_assoc();
+    //user
+    $userlres = mysqli_query($conn, "SELECT * FROM user_account WHERE user_id = $id");
+    $usersqlcount = "SELECT SQL_CALC_FOUND_ROWS * FROM user_account";
+    $userst = $conn->query("SELECT found_rows() AS totalRows");
+    $userrownum = $userst->fetch_assoc();
 
     //customer
     $cusres = mysqli_query($conn, 'SELECT * FROM customer');

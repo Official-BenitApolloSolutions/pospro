@@ -34,7 +34,7 @@
                 <select name="product" class='form-control form-control-lg' required>
                   <?php while ($row=$prodres->fetch_assoc()) {
                    ?>
-                  <option class="w-100" value="<?php echo $row['product_id']; ?>"><?php echo $row['product_code'] . " - " . $row['gen_name'] . " - " . $row['product_name'] . " | EXPIRES AT: " . $row['expiry_date']; ?></option>
+                    <option class="w-100" value="<?php echo $row['product_id']; ?>"><?php echo $row['product_code'] . " - " . $row['gen_name'] . " - " . $row['product_name'] . " | EXPIRES AT: " . $row['expiry_date']; ?></option>
                 <?php } ?>
                   <option selected disabled>Select a Product</option>
                 </select>

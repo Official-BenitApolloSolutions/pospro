@@ -4,7 +4,7 @@
 	if (isset($_POST['submit'])) {
 		// $productname = $_POST['product'];
 		// include '../../functions/get_product.php';
-		print_r($_POST);
+		// print_r($_POST);
 		
 		$productqty = $_POST['qty'];
 		$productid = $_POST['product'];
@@ -34,12 +34,12 @@
 		    		$amount = floatval($productprice) * floatval($productqty);
 		    		$productgen = $row['gen_name'];
 		    		$productcode = $row['product_code'];
-		    		$profit_ = $row['profit'] ;
+		    		$profit_ = $row['profit'];
 		    	}
 		    	$profit = $profit_ *  $productqty;
 
 		    	// query
-		    	$query = "INSERT INTO sales_order (invoice,qty, amount, profit, product_code, gen_name, product, price, order_date) VALUES (:invoice, :productqty, :amount, :profit, :productcode,:productgen, :productname, :productprice, :date)";
+		    	$query = "INSERT INTO sales_order (invoice, qty, amount, profit, product_code, gen_name, product, price, order_date) VALUES (:invoice, :productqty, :amount, :profit, :productcode,:productgen, :productname, :productprice, :date)";
 		    	$stmt2 = $dbc->prepare($query);
 		    	$stmt2->bindValue(':invoice', $invoice, PDO::PARAM_STR);
 		    	$stmt2->bindValue(':productqty', $productqty, PDO::PARAM_INT);
