@@ -70,7 +70,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php for ($i=0; $row = $orders->fetch() ; $i++) { 
+                  <?php for ($i=0; $row = $orders->fetch(); $i++) { 
                       $_SESSION['id'] = $row['transaction_id'];
                    ?>
                   <tr>

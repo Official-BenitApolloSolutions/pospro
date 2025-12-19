@@ -59,6 +59,11 @@ require_once '../settings/config.php';
      $invoice = '34' . getRandomPars();
 
     // update product
+     // $query = "SELECT * FROM products";
+     // $rows = mysqli_query($dbc, $query);
+     // for ($i=0; $row= $rows->fetch(); $i++) { 
+     //   $currentrow = $row['product_id'];
+     // }
      $fetchprod = "SELECT * FROM products WHERE product_id = :userid";
      $stmt = $dbc->prepare($fetchprod);
      $stmt->bindParam(":userid", $id);

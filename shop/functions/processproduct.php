@@ -63,7 +63,6 @@ if (isset($_POST['submit_product'])) {
 	$stmt->bindParam(':supplier',$supplier);
 	$stmt->bindParam(':productqty',$productqty);
 	try {
-
 		$stmt->execute();
 		echo "successfully added record";
 		$_SESSION['session_status'] = $status_messages[4];
@@ -128,9 +127,16 @@ if (isset($_POST['update_product'])) {
 			$_SESSION['error_status'] = $error_mode;
 		}
 	}
+		// $query = "SELECT * FROM products";
+		// $rows = mysqli_query($dbc, $query);
+		// $currentrow = "";
+		// for ($i=0; $row = $rows->fetch(); $i++) { 
+		// 	$currentrow = $row['product_id'];
+		// }
      $sql = "UPDATE products SET product_name = :productname, gen_name = :brandname, product_code = :productdesc, supplier = :supplier, date_arrival = :date_arrival, expiry_date = :expiry_date, o_price = :o_price, price = :price, profit = :profit, qty = :prodquantity WHERE product_id = :userid";
      try {
        $stmt=$dbc->prepare($sql);
+       // $stmt->bindValue(":userid",$currentrow, PDO::PARAM_INT);
        $stmt->bindValue(":productname",$productname, PDO::PARAM_STR);
        $stmt->bindValue(":brandname", $brandname, PDO::PARAM_STR);
        $stmt->bindValue(":productdesc", $productdesc, PDO::PARAM_STR);

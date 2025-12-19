@@ -97,7 +97,7 @@
                   //   $productname = $rows["product_name"];
                       // $id = 0;
                  while($row = $prodres->fetch_assoc()) {
-                     $_SESSION['id'] = $row["product_id"];
+                     // $_SESSION['id'] = $row["product_id"];
               ?>
               <tr>
                 <td>
@@ -225,6 +225,9 @@
       </div>
       <div class='modal-body'>
         <form action='../functions/processproduct.php' method='post'>
+          <?php 
+            while($upsrow = $suplres->fetch_assoc()){
+          ?>
           <div class='form-group mb-2'>
             <label for='product_brand'>Brand Name</label>
             <input class='form-control' name='product-brand' type='text' placeholder='Enter product brand' id='upproduct_brand' value="<?php echo $uprow['gen_name']; ?>" required>
@@ -261,9 +264,6 @@
             <label for='supplier'>Supplier</label>
             <select class='form-control' name='supplier' required>
               <option selected disabled>select supplier</option>
-              <?php 
-                while($upsrow = $suplres->fetch_assoc()){
-              ?>
               <option value='<?php echo $upsrow['supplier_name']; ?>'><?php echo $upsrow['supplier_name']; ?></option>
             <?php } ?>
             </select>
