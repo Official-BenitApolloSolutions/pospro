@@ -6,6 +6,7 @@
       $user_role = $_SESSION['user_role'];
     }
 ?>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
 <main class='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
     <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
       <h1 class='h2'>Settings - <?php echo $timer . " " . $hero ?></h1>
@@ -46,7 +47,7 @@
 	          <div class='bg-body-tertiary p-3 rounded'>
 	            <h4 class="text-center fs-5 fw-bold">Payment Options</h4>
 	            <div class="d-flex">
-	              <a class="btn btn-bd-primary m-3 mx-auto" href="/products/shop/view/sales.php?user_role=<?php echo $user_role; ?>&id=cash&invoice=<?php echo $invoice; ?>">Edit</a>
+	              <a class="btn btn-bd-primary m-3 mx-auto" data-bs-toggle="offcanvas" href="#payment-options">Edit</a>
 	            </div>
 	          </div>
 	        </div>
@@ -293,16 +294,16 @@
             <input class='form-control' name='address' type='text' placeholder='Enter address' id='address' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='contact_info'>Contact Info</label>
-            <input class='form-control' name='contact_info' type='tel' placeholder='Enter contact information' id='contact_info' required>
+            <label for='update_contact_info'>Contact Info</label>
+            <input class='form-control' name='contact_info' type='tel' placeholder='Enter contact information' id='update_contact_info' required>
           </div>
           <div class='form-group mb-2'>
             <label for='logo'>Logo</label>
             <input class='form-control' name='logo' type='file' id='logo' accept='image/jpeg'>
           </div>
           <div class='form-group mb-2'>
-            <label for='tax_id'>Tax Id</label>
-            <input class='form-control' name='tax_id' type='text' id='tax_id' placeholder="Enter tax id" required>
+            <label for='update_tax_id'>Tax Id</label>
+            <input class='form-control' name='tax_id' type='text' id='update_tax_id' placeholder="Enter tax id" required>
           </div>
           <div class='form-group mb-2'>
             <label for='currency'>Currency</label>
@@ -320,8 +321,8 @@
             <input class='form-control' name='username' type='text' placeholder='Enter product name'id='username' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='password'>Password</label>
-            <input class='form-control' name='password' type='password' placeholder='Enter password'id='password' required>
+            <label for='update-password'>Password</label>
+            <input class='form-control' name='password' type='password' placeholder='Enter password'id='update-password' required>
           </div>
           <div class='form-group mb-2'>
             <label for='institution_desc'>Institution Description</label>
@@ -357,9 +358,54 @@
   </div>
 </div>
 
+<!-- payment options -->
+<div class="offcanvas offcanvas-end" id="payment-options">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title">Payment Options</h3>
+  </div>
+  <div class="offcanvas-body">
+    <small style="font-variant: small-caps;">Transactions convenient to you</small>
+    <form>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="add-mobile-money">
+        <label class="form-check-label">Mobile Money</label>
+      </div>
+      <div class="form-group m-3" id="mobile-money-setting" style="display:none;">
+        <!-- <label for="mobile-money">Mobile Money</label> -->
+        <input class="form-control" placeholder="Enter mobile money number" id="mobile-money">
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input">
+        <label class="form-check-label">Bank Transfer</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input">
+        <label class="form-check-label">Card Payments</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input">
+        <label class="form-check-label">Cash Payments</label>
+      </div>
+      <div class="form-btn mt-3 d-flex">
+        <button type="submit" class="btn btn-bd-primary mx-auto">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script type="text/javascript">
   const intstitutiontype = document.getElementById("institution");
   intstitutiontype.addEventListener('invalid', (event)=>{
     event.target.setCustomValidity('Please select institution type');
+  });
+</script>
+<script>
+  document.getElementById('add-mobile-money').addEventListener('change',function() {
+    const momo = document.getElementById('mobile-money-setting');
+    if (this.checked) {
+      momo.style.display = 'block';
+    }else{
+      momo.style.display = 'none';
+    }
   });
 </script>
