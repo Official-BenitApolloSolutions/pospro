@@ -6,7 +6,6 @@
       $user_role = $_SESSION['user_role'];
     }
 ?>
-<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
 <main class='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
     <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
       <h1 class='h2'>Settings - <?php echo $timer . " " . $hero ?></h1>
@@ -253,8 +252,8 @@
             <input class='form-control' name='establishment-date' type='date' id='date_of_establishment' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='institution'>Institution Type</label>
-            <select class='form-control' name='institution_type' required>
+            <label for='institution-type'>Institution Type</label>
+            <select class='form-control' name='institution_type' id="institution-type" required>
               <option selected disabled>select institution type</option>
               <option value="sole proprietor">Sole Proprietor</option>
               <option value="partnership">Partnership</option>
@@ -286,29 +285,29 @@
       <div class='modal-body'>
         <form action='../functions/updateaccount.php' method='post' enctype="multipart/form-data">
           <div class='form-group mb-2'>
-            <label for='institution_name'>Institution Name</label>
-            <input class='form-control' name='institution-name' type='text' placeholder='Enter institution name' required>
+            <label for='update_institution'>Institution Name</label>
+            <input class='form-control' name='institution-name' type='text' placeholder='Enter institution name' id="update_institution" required>
           </div>
           <div class='form-group mb-2'>
-            <label for='address'>Address</label>
-            <input class='form-control' name='address' type='text' placeholder='Enter address' id='address' required>
+            <label for='update_address'>Address</label>
+            <input class='form-control' name='address' type='text' placeholder='Enter address' id='update_address' required>
           </div>
           <div class='form-group mb-2'>
             <label for='update_contact_info'>Contact Info</label>
             <input class='form-control' name='contact_info' type='tel' placeholder='Enter contact information' id='update_contact_info' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='logo'>Logo</label>
-            <input class='form-control' name='logo' type='file' id='logo' accept='image/jpeg'>
+            <label for='update_logo'>Logo</label>
+            <input class='form-control' name='logo' type='file' id='update_logo' accept='image/jpeg'>
           </div>
           <div class='form-group mb-2'>
             <label for='update_tax_id'>Tax Id</label>
             <input class='form-control' name='tax_id' type='text' id='update_tax_id' placeholder="Enter tax id" required>
           </div>
           <div class='form-group mb-2'>
-            <label for='currency'>Currency</label>
-            <input type="text" class="form-control" name="currency" id="currency" list="currencies" placeholder="Enter currency" required>
-            <datalist id="currencies">
+            <label for='update_currency'>Currency</label>
+            <input type="text" class="form-control" name="currency" id="update_currency" list="update_currency" placeholder="Enter currency" required>
+            <datalist id="update_currency">
               <option value="GHS">Ghana Cedi</option>
               <option value="USD">US Dollar</option>
               <option value="EUR">Euro</option>
@@ -317,25 +316,25 @@
             </datalist>
           </div>
           <div class='form-group mb-2'>
-            <label for='username'>Username</label>
-            <input class='form-control' name='username' type='text' placeholder='Enter product name'id='username' required>
+            <label for='update_username'>Username</label>
+            <input class='form-control' name='username' type='text' placeholder='Enter product name'id='update_username' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='update-password'>Password</label>
-            <input class='form-control' name='password' type='password' placeholder='Enter password'id='update-password' required>
+            <label for='update_password'>Password</label>
+            <input class='form-control' name='password' type='password' placeholder='Enter password'id='update_password' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='institution_desc'>Institution Description</label>
-            <textarea class="form-control" name="institution-description" placeholder="institution description" id="institution_desc" required></textarea>
+            <label for='update_institution_desc'>Institution Description</label>
+            <textarea class="form-control" name="institution-description" placeholder="institution description" id="update_institution_desc" required></textarea>
           </div>
           <div class='form-group mb-2'>
-            <label for='date_of_establishment'>Business Inception Date</label>
-            <input class='form-control' name='establishment-date' type='date' id='date_of_establishment' required>
+            <label for='update_date_of_establishment'>Business Inception Date</label>
+            <input class='form-control' name='establishment-date' type='date' id='update_date_of_establishment' required>
           </div>
           <div class='form-group mb-2'>
-            <label for='institution'>Institution Type</label>
-            <input class="form-control" type="text" placeholder="Enter type of institution" name="institution_type" required list="institution_type" id="institution">
-            <datalist id="institution_type">
+            <label for='update_typeinstitution'>Institution Type</label>
+            <input class="form-control" type="text" placeholder="Enter type of institution" name="institution_type" required list="institution_typeupdate" id="update_typeinstitution">
+            <datalist id="institution_typeupdate">
               <option value="sole proprietor">Sole Proprietor</option>
               <option value="partnership">Partnership</option>
               <option value="public company">Public Company</option>
@@ -343,8 +342,8 @@
             </datalist>
           </div>
           <div class='form-group mb-2'>
-            <label for='employee_number'>Number of employees</label>
-            <input class='form-control' name='employee-number' type='number' id='employee_number' placeholder="total number of employees" min="0" required>
+            <label for='updateemployee_number'>Number of employees</label>
+            <input class='form-control' name='employee-number' type='number' id='updateemployee_number' placeholder="total number of employees" min="0" required>
           </div>
           <div class="form-group d-flex justify-content-center">
             <div class="m-3">
@@ -362,21 +361,26 @@
 <div class="offcanvas offcanvas-end" id="payment-options">
   <div class="offcanvas-header">
     <h3 class="offcanvas-title">Payment Options</h3>
+    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">
     <small style="font-variant: small-caps;">Transactions convenient to you</small>
-    <form>
+    <form action="" method="post">
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="add-mobile-money">
         <label class="form-check-label">Mobile Money</label>
       </div>
-      <div class="form-group m-3" id="mobile-money-setting" style="display:none;">
-        <!-- <label for="mobile-money">Mobile Money</label> -->
-        <input class="form-control" placeholder="Enter mobile money number" id="mobile-money">
+      <div class="form-group d-none m-3" id="mobile-money-setting">
+        <label for="mobile-money">Merchant Number</label>
+        <input type="chat" class="form-control" placeholder="Enter number" id="mobile-money" required>
       </div>
       <div class="form-check">
-        <input type="checkbox" class="form-check-input">
+        <input type="checkbox" class="form-check-input" id="add-account-number">
         <label class="form-check-label">Bank Transfer</label>
+      </div>
+      <div class="form-group d-none m-3" id="account-number-setting">
+        <label for="account-number">Account Number</label>
+        <input type="chat" class="form-control" placeholder="Enter account details" id="account-number" required>
       </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input">
@@ -387,25 +391,37 @@
         <label class="form-check-label">Cash Payments</label>
       </div>
       <div class="form-btn mt-3 d-flex">
-        <button type="submit" class="btn btn-bd-primary mx-auto">Submit</button>
+        <button name="payment-options" type="submit" class="btn btn-bd-primary mx-auto">Submit</button>
       </div>
     </form>
   </div>
 </div>
 
 <script type="text/javascript">
-  const intstitutiontype = document.getElementById("institution");
+  const intstitutiontype = document.getElementById("institution-type");
   intstitutiontype.addEventListener('invalid', (event)=>{
     event.target.setCustomValidity('Please select institution type');
   });
-</script>
-<script>
+
   document.getElementById('add-mobile-money').addEventListener('change',function() {
     const momo = document.getElementById('mobile-money-setting');
     if (this.checked) {
-      momo.style.display = 'block';
+      momo.classList.remove('d-none');
+      momo.classList.add('d-block');
     }else{
-      momo.style.display = 'none';
+      momo.classList.remove('d-block');
+      momo.classList.add('d-none');
+    }
+  });
+
+  document.getElementById('add-account-number').addEventListener('change',function() {
+    const account = document.getElementById('account-number-setting');
+    if (this.checked) {
+      account.classList.remove('d-none');
+      account.classList.add('d-block');
+    }else{
+      account.classList.remove('d-block');
+      account.classList.add('d-none');
     }
   });
 </script>
