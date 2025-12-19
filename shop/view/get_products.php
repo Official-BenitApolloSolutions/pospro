@@ -126,24 +126,24 @@
                 </td>
               </tr>
               <?php } ?>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>0.00</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>             
-                  </tr>
-                </tfoot>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0.00</td>
+                <td>&nbsp;</td>             
+              </tr>
+            </tfoot>
           </table>
         </div>  
       </form>
@@ -202,13 +202,13 @@
             <?php } ?>
             </select>
           </div>
-          <div class='form-group mb-2'>
+          <div class='form-group mb-3'>
             <label for='product_quantity'>Quantity</label>
             <input class='form-control' name='product-quantity' type='number' id='product_quantity' placeholder="1 item" min="0" required>
           </div>
-          <div class="form-group">
-            <button class='btn btn-outline-danger' type='button' data-bs-dismiss='modal'>Cancel</button>
-        <button class='btn btn-outline-secondary' name='submit_product' type='submit'>Save</button>
+          <div class="form-group d-flex justify-content-center p-3">
+            <button class='btn btn-outline-danger me-5' type='button' data-bs-dismiss='modal'>Cancel</button>
+            <button class='btn btn-outline-secondary' name='submit_product' type='submit'>Save</button>
           </div>
         </form>
       </div>
@@ -272,9 +272,9 @@
             <label for='product_quantity'>Quantity</label>
             <input class='form-control' name='product-quantity' type='number' id='product_quantity' placeholder="1 item" min="0" value="<?php echo $uprow["qty"]; ?>" required>
           </div>
-          <div class="form-group mb-2 d-flex justify-content-center">
-            <button class='btn btn-outline-danger' type='button' data-bs-dismiss='modal'>Cancel</button>
-            <button class='btn btn-outline-secondary' name='update_product' type='submit'>Save</button>
+          <div class="form-group p-3 d-flex justify-content-center">
+            <button class='btn btn-outline-danger me-5' type='button' data-bs-dismiss='modal'>Cancel</button>
+            <button class='btn btn-outline-secondary' name='update_product' type='submit'>Update</button>
           </div>
         </form>
       </div>
