@@ -1,5 +1,4 @@
 <?php include '../functions/get_product.php';
-      $user_role = "";
       if (isset($_SESSION['user_role'])) {
         $user_role = $_SESSION['user_role'];
       }
@@ -27,7 +26,6 @@
     </div>
   </div>
   <div class="container">
-    <!-- <form action="../functions/process.php" method="post"> -->
         <div class='mt-5 table-responsive small'>
           <table class='table table-striped table-sm' id='dash-activity'>
             <thead>
@@ -48,7 +46,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="p-5">
                 <td>
                   <?php 
                     if (isset($uprow["product_id"])) {
@@ -68,9 +66,9 @@
                 <td><?php if(isset($uprow["qty"])){ echo $uprow["qty"];} ?></td>
                 <td><?php if(isset($uprow["onhand_qty"])){ echo $uprow["onhand_qty"];} ?></td>
                 <td>&nbsp;</td>
-                <td class="p-3">
+                <td>
                   <?php if (isset($uprow["product_id"])): ?>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#update-product" class="btn btn-warning m-2">Update</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#update-product" class="btn btn-outline-warning m-2">Update</button>
                     <button type="button" data-bs-toggle="modal" data-bs-target="#delete-product" class="btn btn-outline-danger m-2">Delete</button>
                   <?php endif ?>
                 </td>
@@ -94,8 +92,7 @@
               </tr>
             </tfoot>
           </table>
-        </div>  
-      </form>
+        </div> 
   </div>
 </main>
 
@@ -109,7 +106,7 @@
       </div>
       <div class='modal-body'>
         <form name="editproductsform" action='../functions/updateproduct.php' method='post'>
-          <input type="hidden" name="updateproduct_id" value="<?php if(isset($uprow["product_id"])){ echo $uprow['product_id']; } ?>">
+          <input type="hidden" name="updateproduct_id" value="<?php if(isset($_GET['product_id'])){ echo $_GET['product_id']; } ?>">
           <div class='form-group mb-2'>
             <label for='product_brand'>Brand Name</label>
             <input class='form-control' name='updateproduct_brand' type='text' placeholder='Enter product brand' id='upproduct_brand' value="<?php if(isset($uprow["gen_name"])){ echo $uprow['gen_name']; } ?>" required>

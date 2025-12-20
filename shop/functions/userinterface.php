@@ -60,6 +60,10 @@
 		processSettings();
 	}
 
+	function loadEditSuppliers(){
+		processEditSuppliers();
+	}
+
 	function loadEditProducts(){
 		processEditProducts();
 	}

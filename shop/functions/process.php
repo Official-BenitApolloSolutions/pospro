@@ -1,8 +1,6 @@
 <?php
 	session_start();
 	require_once '../settings/config.php';
-	$user_role = "";
-	$invoice = "";
 	$error_status = array();
 	$status_messages = ["Fields cannot be left empty","product brand cannot be left empty","supplier cannot be left empty","product quantity cannot be left empty","Successfully added record","Problems were encounted"];
 	if (isset($_SESSION['user_role'])) {
@@ -12,10 +10,11 @@
 		$invoice = $_SESSION['invoice'];
 	}
 
-	// termination
 	$uri = "../view/products.php?user_role=$user_role";
 	$path = urlencode($uri);
 	$route = urldecode($path);
+
+	// Termination
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 		$sql = "DELETE FROM products WHERE product_id = :userid";
@@ -29,13 +28,10 @@
 			header("Location: $route");
 		}
 	}
-	if (isset($_POST['delete_supplier'])) {
-		if (isset($_SESSION['user_role'])) {
-			$user_role = $_SESSION['user_role'];
-		}
-		if (isset($_SESSION['id'])) {
-			$id = $_SESSION['id'];
-		}
+
+	// delete supplier
+	if (isset($_GET['supplier_id'])) {
+		$id = $_GET['supplier_id'];
 		$uri = "../view/supplier.php?user_role=$user_role";
 		$path = urlencode($uri);
 		$route = urldecode($path);
@@ -51,6 +47,7 @@
 		}
 	}
 
+	// Delete supplier 
 	if (isset($_POST['delete_customer'])) {
 		if (isset($_SESSION['user_role'])) {
 			$user_role = $_SESSION['user_role'];
@@ -73,6 +70,7 @@
 		}
 	}
 
+	// Delete user
 	if (isset($_POST['delete_user'])) {
 		if (isset($_SESSION['user_role'])) {
 			$user_role = $_SESSION['user_role'];

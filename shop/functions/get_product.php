@@ -4,8 +4,11 @@
     $hero = date_default_timezone_get();
     $today = date('l'); 
     $timer = date('Y.m.d H:i:s a');
-    if (isset($_GET['id'])) {
-      $productid = $_GET['id'];
+    if (isset($_GET['product_id'])) {
+      $productid = $_GET['product_id'];
+    }
+    if (isset($_GET['supplier_id'])) {
+      $supplierid = $_GET['supplier_id'];
     }
     if (isset($_SESSION['id'])) {
       $id = $_SESSION['id'];
@@ -48,6 +51,10 @@
     $cusrownum = $cust->fetch_assoc();
 
     //orders
+    $sal_query = "SELECT * FROM sales";
+    $sales = $dbc->prepare($sal_query);
+    $sales->execute();
+
      function getRandomPars(){
       $chars = "003232303232023232023456789";
       srand((double)microtime()*1000000);
@@ -75,4 +82,11 @@
      $stmt->bindParam(":userid", $productid);
      $stmt->execute();
      $uprow = $stmt->fetch();
+
+     // update supplier
+     $fetchsup = "SELECT * FROM suppliers WHERE supplier_id = :supid";
+     $stmt2 = $dbc->prepare($fetchsup);
+     $stmt2->bindParam(":supid", $supplierid);
+     $stmt2->execute();
+     $suprow = $stmt2->fetch();
 ?>

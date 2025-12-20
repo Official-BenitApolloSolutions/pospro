@@ -1,12 +1,7 @@
 <?php
 	session_start();
 	require_once '../settings/config.php';
-	$user_role = "";
-	$invoice = "";
 	$error_status = array();
-	$uri = "../view/products.php?user_role=$user_role";
-	$path = urlencode($uri);
-	$route = urldecode($path);
 	$status_messages = ["Fields cannot be left empty","product brand cannot be left empty","supplier cannot be left empty","product quantity cannot be left empty","Successfully added record","Problems were encounted"];
 	if (isset($_SESSION['user_role'])) {
 		$user_role = $_SESSION['user_role'];
@@ -14,6 +9,11 @@
 	if (isset($_SESSION['invoice'])) {
 		$invoice = $_SESSION['invoice'];
 	}
+
+	if (isset($_SESSION['product_id'])) {
+		$prodid = $_SESSION['product_id'];
+	}
+
 	if (isset($_POST['update_product'])) {
 		$updateid = $_POST['updateproduct_id'];
 		$updateproductbrand = getData($_POST['updateproduct_brand']);
@@ -76,20 +76,24 @@
 		   $stmt->bindValue(":profit", $updateproductprofit, PDO::PARAM_STR);
 		   $stmt->bindValue(":prodquantity", $updateproductqty, PDO::PARAM_INT);
 		   $stmt->execute();
+		   	echo "successfully added record";
+			$_SESSION['session_status'] = $status_messages[1];
+			$_SESSION['product_id'] = $updateid;
+		   $uri = "../view/editproduct_view.php?user_role=$user_role&product_id=$prodid";
+		   $path = urlencode($uri);
+		   $route = urldecode($path);
 		   header("Location: $route");
 		 } catch (PDOException $e) {
 		   echo "error: " . $e->getMessage();
-		 }
-
-			$dbc = null;
-		}else{
-			header("Location: ../view/editproduct_view.php?user_role=$user_role");
 		}
 
-		function getData($data){
-			$data = trim($data);
-			$data = htmlspecialchars($data);
-			$data = stripcslashes($data);
-			return $data;
-		}
+		$dbc = null;
+	}
+
+	function getData($data){
+		$data = trim($data);
+		$data = htmlspecialchars($data);
+		$data = stripcslashes($data);
+		return $data;
+	}
 ?>

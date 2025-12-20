@@ -61,6 +61,10 @@
     loadUsers();
   }
 
+  function editSuppliers(){
+    loadEditSuppliers();
+  }
+
   function editProducts(){
     loadEditProducts();
   }

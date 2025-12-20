@@ -58,7 +58,6 @@
       </div>
     </div>
     <div class="container">
-      <!-- <form action="../functions/process.php" method="post"> -->
         <div class='mt-5 table-responsive small'>
           <table class='table table-striped table-sm' id='dash-activity'>
             <thead>
@@ -101,7 +100,7 @@
                 <td><?php echo $row["onhand_qty"]; ?></td>
                 <td>&nbsp;</td>
                 <td>
-                    <a href="editproduct_view.php?user_role=<?php echo $user_role; ?>&id=<?php echo $productid; ?>" class="btn btn-warning">Edit</a>
+                    <a href="editproduct_view.php?user_role=<?php echo $user_role; ?>&product_id=<?php echo $productid; ?>" class="btn btn-warning">Edit</a>
                 </td>
               </tr>
               <?php } ?>
@@ -125,7 +124,6 @@
             </tfoot>
           </table>
         </div>  
-      <!-- </form> -->
     </div>
 </main>
 
