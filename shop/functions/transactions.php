@@ -46,6 +46,10 @@
   function processSettings(){
     include '../view/view_settings.php';
   }
+
+  function processEditProducts(){
+    include '../view/editproduct.php';
+  }
   
   function processUsers(){
     include '../view/users.php';

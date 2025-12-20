@@ -53,7 +53,6 @@
               </div>
             </div>
           </form>
-          <form method="post" action="../functions/cancel_order.php">
             <div class='mt-5 table-responsive small'>
               <table class='table table-striped table-sm' id='dash-activity'>
                 <thead>
@@ -71,7 +70,6 @@
                 </thead>
                 <tbody>
                   <?php for ($i=0; $row = $orders->fetch(); $i++) { 
-                      $_SESSION['id'] = $row['transaction_id'];
                    ?>
                   <tr>
                     <td><?php echo $row['transaction_id']; ?></td>
@@ -82,9 +80,9 @@
                     <td><?php echo $row['qty']; ?></td>
                     <td class='border-primary'><span class='text-muted'><?php echo $row['amount']; ?></span></td>
                     <td class='border-primary'><span class='text-muted'><?php echo $row['profit']; ?></span></td>
-                    <td><button type="submit" class="btn btn-warning" name="cancel">cancel</button></td>
+                    <td><a class="btn btn-warning" href="../functions/cancel_order.php?user_role=<?php echo $user_role; ?>&id=<?php echo $row['transaction_id']; ?>">cancel</a></td>
                   </tr>
-                <?php } ?>
+                  <?php } ?>
                 </tbody>
                 <tfoot>
                   <tr>
@@ -135,8 +133,9 @@
             <div class='mt-4 d-flex'>
               <button type="button" class='btn btn-success w-75 h-50 mx-auto text-uppercase m-3' data-bs-toggle="modal" data-bs-target="#confirm-order">save</button>
             </div>
-          </form>
 </main>
+
+<!-- confirm order -->
 <div class="modal fade" id="confirm-order">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -170,3 +169,4 @@
     </div>
   </div>
 </div>
+

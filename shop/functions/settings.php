@@ -61,6 +61,10 @@
     loadUsers();
   }
 
+  function editProducts(){
+    loadEditProducts();
+  }
+
   // routes
   function OrdersPage(){
     RouteOrders();

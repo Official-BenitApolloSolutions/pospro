@@ -3,27 +3,25 @@
 	require_once '../settings/config.php';
 	$user_role = "";
 	$invoice = "";
-	$id = "";
-	// updates
-	
+	$error_status = array();
+	$status_messages = ["Fields cannot be left empty","product brand cannot be left empty","supplier cannot be left empty","product quantity cannot be left empty","Successfully added record","Problems were encounted"];
+	if (isset($_SESSION['user_role'])) {
+		$user_role = $_SESSION['user_role'];
+	}
+	if (isset($_SESSION['invoice'])) {
+		$invoice = $_SESSION['invoice'];
+	}
+
 	// termination
-	if (isset($_POST['delete'])) {
-		if (isset($_SESSION['user_role'])) {
-			$user_role = $_SESSION['user_role'];
-		}
-		if (isset($_SESSION['invoice'])) {
-			$invoice = $_SESSION['invoice'];
-		}
-		if (isset($_SESSION['id'])) {
-			$id = $_SESSION['id'];
-		}
-		$uri = "../view/products.php?user_role=$user_role&id=cash&invoice=$invoice";
-		$path = urlencode($uri);
-		$route = urldecode($path);
+	$uri = "../view/products.php?user_role=$user_role";
+	$path = urlencode($uri);
+	$route = urldecode($path);
+	if (isset($_GET['id'])) {
+		$id = $_GET['id'];
 		$sql = "DELETE FROM products WHERE product_id = :userid";
 		try{
 			$stmt = $dbc->prepare($sql);
-			$stmt->bindValue(":userid", $id, PDO::PARAM_STR);
+			$stmt->bindValue(":userid", $id, PDO::PARAM_INT);
 			$stmt->execute();
 			header("Location: $route");
 		}catch(PDOException $e){
@@ -31,7 +29,6 @@
 			header("Location: $route");
 		}
 	}
-
 	if (isset($_POST['delete_supplier'])) {
 		if (isset($_SESSION['user_role'])) {
 			$user_role = $_SESSION['user_role'];

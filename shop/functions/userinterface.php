@@ -59,6 +59,10 @@
 	function loadSettings(){
 		processSettings();
 	}
+
+	function loadEditProducts(){
+		processEditProducts();
+	}
 	
 	function loadUsers(){
 		processUsers();

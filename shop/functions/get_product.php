@@ -1,9 +1,12 @@
 <?php
-require_once '../settings/config.php';
+    require_once '../settings/config.php';
     date_default_timezone_set("UTC");
     $hero = date_default_timezone_get();
     $today = date('l'); 
     $timer = date('Y.m.d H:i:s a');
+    if (isset($_GET['id'])) {
+      $productid = $_GET['id'];
+    }
     if (isset($_SESSION['id'])) {
       $id = $_SESSION['id'];
     }
@@ -23,6 +26,14 @@ require_once '../settings/config.php';
     // $totalrows = $conn->query($prodsqlcount);
     $st = $conn->query("SELECT found_rows() AS totalRows");
     $rownum = $st->fetch_assoc();
+
+    // pdo products
+    $query = "SELECT * FROM products";
+    $products = $dbc->prepare($query);
+    $products->execute();
+
+    $prodsqlcount = "SELECT COUNT(*) FROM products";
+    $rownum = $dbc->query($prodsqlcount)->fetchColumn();
 
     //supplier
     $suplres = mysqli_query($conn, 'SELECT * FROM suppliers');
@@ -59,14 +70,9 @@ require_once '../settings/config.php';
      $invoice = '34' . getRandomPars();
 
     // update product
-     // $query = "SELECT * FROM products";
-     // $rows = mysqli_query($dbc, $query);
-     // for ($i=0; $row= $rows->fetch(); $i++) { 
-     //   $currentrow = $row['product_id'];
-     // }
      $fetchprod = "SELECT * FROM products WHERE product_id = :userid";
      $stmt = $dbc->prepare($fetchprod);
-     $stmt->bindParam(":userid", $id);
+     $stmt->bindParam(":userid", $productid);
      $stmt->execute();
      $uprow = $stmt->fetch();
 ?>
