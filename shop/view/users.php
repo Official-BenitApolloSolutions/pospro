@@ -13,7 +13,7 @@
           <li class='breadcrumb-item'>User Management</li>
         </ol>
       </nav>
-      <a class='btn btn-outline-secondary text-capitalize' href='./settings.php?user_role=<?php echo $user_role; ?>&id=cash&invoice=<?php echo $invoice; ?>'>back to settings</a>
+      <a class='btn btn-outline-secondary' href='./settings.php?user_role=<?php echo $user_role; ?>&id=cash&invoice=<?php echo $invoice; ?>'>Back to settings</a>
     </h1>
     <div class='btn-toolbar mb-2 mb-md-0'>
       <div class='btn-group me-2'>
@@ -46,7 +46,7 @@
     </div>
     <form action="../functions/process.php" method="post">
       <div class='table-responsive small'>
-        <table class='table table-striped table-sm' id='user-activity'>
+        <table class='table table-striped table-sm' id='dash-activity'>
           <thead>
             <tr>
               <th scope='col'>#</th>
@@ -62,9 +62,7 @@
           </thead>
           <tbody>
             <?php 
-                while($row=$user_res->fetch_assoc()){ 
-                $_SESSION['id'] = $row['user_id'];
-                $id = $_SESSION['id'];
+                while($row=$user_res->fetch_assoc()){
             ?>
             <tr>
               <td><?php echo $row['user_id']; ?></td>
@@ -75,8 +73,9 @@
               <td><?php echo $row['username']; ?></td>
               <td><?php echo $row['note']; ?></td>
               <td><?php echo $row['assigned_date']; ?></td>
-              <td><div><button type="button" class="btn btn-outline-warning text-capitalize" data-bs-target="#update-user" data-bs-toggle="modal">edit</button></div>&nbsp;
-                <div><button type="submit" class="btn btn-outline-danger text-capitalize" name="delete_user">delete</button></div></td>
+              <td>
+                <a class="btn btn-outline-warning text-capitalize" href="editusers_view.php?user_role=<?php echo $user_role; ?>&userid=<?php echo $row['user_id']; ?>">edit</a>
+              </td>
             </tr>
             <?php } ?>
           </tbody>
@@ -85,6 +84,8 @@
     </form>
   </div>
 </main>
+
+<!-- add user -->
 <div class='modal fade' id='add-user'>
   <div class='modal-dialog'>
     <div class='modal-content'>
@@ -138,64 +139,6 @@
           </div>
         </div>
       </form>
-    </div>
-  </div>
-</div>
-<div class='modal fade' id='update-user'>
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <h3 class='modal-title'>Update User</h3>
-        <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
-      </div>
-      <form action='../functions/processuser.php' method='post'>
-        <div class='modal-body'>
-            <input type="text" name="id" value="<?php echo $row['user_id']; ?>">
-            <div class="form-group mb-2">
-              <label for='user_fullname'>Full Name</label>
-              <input class='form-control' name='fullname' type='text' placeholder='Enter full name' id='user_fullname' value="<?php echo $row['fullname']; ?>" required>
-            </div>
-            <div class="form-group mb-2">
-              <label for='address'>Address</label>
-              <input class='form-control' name='address' type='text' placeholder='Enter address'id='address' required>
-            </div>
-            <div class="form-group mb-2">
-              <label for='contact_info'>Contact</label>
-              <input class='form-control' name='contact' type='tel' placeholder='Enter contact' id='contact_info'>
-            </div>
-            <div class="form-group mb-2">
-              <label for='position'>Position</label>
-              <input type="text" class='form-control' name='position' type='text' id='position' list="positions">
-              <datalist id="positions">
-                <option value="admin">Admin</option>
-                <option value="cashier">Cashier</option>
-              </datalist>
-            </div>
-            <div class="form-group mb-2">
-              <label for='username'>Username</label>
-              <input class='form-control' name='username' type='text' autocomplete="off" placeholder='Enter username' id='username'>
-            </div>
-            <div class="form-group mb-2">
-              <label for='password'>Password</label>
-              <input class='form-control' name='password' type='password' autocomplete="off" placeholder='Enter password' id='password'>
-            </div>
-            <div class="form-group mb-2">
-              <label for='notes'>Notes</label>
-              <textarea class='form-control' name='note' type='text' placeholder='Enter a note' id='notes'></textarea>
-            </div>
-            <div class="form-group mb-2">
-              <label for='assigned_date'>Assigned Date</label>
-              <input class='form-control' name='assigned_date' type='date' id='assigned_date'>
-            </div>
-        </div>
-        <div class='modal-footer d-flex justify-content-center'>
-          <div class="m-3">
-            <button class='btn btn-outline-danger me-5' type='button' data-bs-dismiss='modal'>Cancel</button>
-            <a class='btn btn-outline-secondary' href="updatedata.php">Update</a>
-          </div>
-        </div>
-      </form>
-    <?php //} ?>
     </div>
   </div>
 </div>

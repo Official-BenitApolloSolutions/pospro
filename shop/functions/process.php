@@ -47,48 +47,38 @@
 		}
 	}
 
-	// Delete supplier 
-	if (isset($_POST['delete_customer'])) {
-		if (isset($_SESSION['user_role'])) {
-			$user_role = $_SESSION['user_role'];
-		}
-		if (isset($_SESSION['id'])) {
-			$id = $_SESSION['id'];
-		}
+	// Delete customer 
+	if (isset($_GET['customer_id'])) {
+		$customer_id = $_GET['customer_id'];
 		$uri = "../view/customers.php?user_role=$user_role";
 		$path = urlencode($uri);
 		$route = urldecode($path);
-		$sql = "DELETE FROM customer WHERE customer_id = :userid";
+		$cusql = "DELETE FROM customer WHERE customer_id = :custeid";
 		try{
-			$stmt = $dbc->prepare($sql);
-			$stmt->bindValue(":userid", $id, PDO::PARAM_STR);
-			$stmt->execute();
+			$custmt = $dbc->prepare($cusql);
+			$custmt->bindValue(":custeid", $customer_id, PDO::PARAM_INT);
+			$custmt->execute();
 			header("Location: $route");
 		}catch(PDOException $e){
-			echo "Exception: " . "<br>" . $sql . $e->getMessage();
+			echo "Exception: " . "<br>" . $cusql . $e->getMessage();
 			header("Location: $route");
 		}
 	}
 
 	// Delete user
-	if (isset($_POST['delete_user'])) {
-		if (isset($_SESSION['user_role'])) {
-			$user_role = $_SESSION['user_role'];
-		}
-		if (isset($_SESSION['id'])) {
-			$id = $_SESSION['id'];
-		}
+	if (isset($_GET['userid'])) {
+		$userid = $_GET['userid'];
 		$uri = "../view/user_management.php?user_role=$user_role";
 		$path = urlencode($uri);
 		$route = urldecode($path);
-		$sql = "DELETE FROM user_account WHERE user_id = :userid";
+		$userl = "DELETE FROM user_account WHERE user_id = :userid";
 		try{
-			$stmt = $dbc->prepare($sql);
-			$stmt->bindValue(":userid", $id, PDO::PARAM_INT);
-			$stmt->execute();
+			$usertmt = $dbc->prepare($userl);
+			$usertmt->bindValue(":userid", $userid, PDO::PARAM_INT);
+			$usertmt->execute();
 			header("Location: $route");
 		}catch(PDOException $e){
-			echo "Exception: " . "<br>" . $sql . $e->getMessage();
+			echo "Exception: " . "<br>" . $userl . $e->getMessage();
 			header("Location: $route");
 		}
 	}

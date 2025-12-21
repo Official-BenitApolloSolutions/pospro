@@ -5,6 +5,6 @@
   loadBackground();
   showFixedNav();
   showSidebar();
-  editProducts();
+  editCustomers();
   showFooter();
 ?>

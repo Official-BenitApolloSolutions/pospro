@@ -10,6 +10,9 @@
     if (isset($_GET['supplier_id'])) {
       $supplierid = $_GET['supplier_id'];
     }
+    if (isset($_GET['customer_id'])) {
+      $customerid = $_GET['customer_id'];
+    }
     if (isset($_SESSION['id'])) {
       $id = $_SESSION['id'];
     }
@@ -85,8 +88,15 @@
 
      // update supplier
      $fetchsup = "SELECT * FROM suppliers WHERE supplier_id = :supid";
-     $stmt2 = $dbc->prepare($fetchsup);
-     $stmt2->bindParam(":supid", $supplierid);
-     $stmt2->execute();
-     $suprow = $stmt2->fetch();
+     $sutmt = $dbc->prepare($fetchsup);
+     $sutmt->bindParam(":supid", $supplierid);
+     $sutmt->execute();
+     $suprow = $sutmt->fetch();
+
+     // update customer
+     $fetchup = "SELECT * FROM customer WHERE customer_id = :custid";
+     $custmt = $dbc->prepare($fetchup);
+     $custmt->bindParam(":custid", $customerid);
+     $custmt->execute();
+     $cusrow = $custmt->fetch();
 ?>

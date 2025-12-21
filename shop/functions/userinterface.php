@@ -64,11 +64,19 @@
 		processEditSuppliers();
 	}
 
+	function loadEditCustomers(){
+		processEditCustomers();
+	}
+
 	function loadEditProducts(){
 		processEditProducts();
 	}
 	
 	function loadUsers(){
 		processUsers();
+	}
+
+	function loadEditUsers(){
+		processEditUsers();
 	}
 ?>

@@ -194,7 +194,7 @@
       </form>
     </div> -->
 </main>
-<!-- add product -->
+<!-- account information -->
 <div class='modal fade' id='add-to-account'>
   <div class='modal-dialog'>
     <div class='modal-content'>
@@ -274,7 +274,7 @@
     </div>
   </div>
 </div>
-<!-- update product -->
+<!-- update account information -->
 <div class='modal fade' id='update-account'>
   <div class='modal-dialog'>
     <div class='modal-content'>

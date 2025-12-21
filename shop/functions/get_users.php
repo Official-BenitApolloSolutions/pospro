@@ -8,6 +8,10 @@ require_once '../settings/config.php';
       $id = $_SESSION['id'];
     }
 
+    if (isset($_GET['userid'])) {
+      $usrid = $_GET['userid'];
+    }
+
     if (isset($_SESSION['session_status'])) {
       $session_status = $_SESSION['session_status'];
       $session_mes = "<div class='alert alert-dismissible fade show alert-success text-capitalize' role='alert'>$session_status<button data-bs-dismiss='alert' type='button' aria-label='close' class='btn-close'></button> at $timer, $today</div>";
@@ -25,7 +29,7 @@ require_once '../settings/config.php';
     $rownum = $st->fetch_assoc();
 
     //user
-    $userlres = mysqli_query($conn, "SELECT * FROM user_account WHERE user_id = $id");
+    $userlres = mysqli_query($conn, "SELECT * FROM user_account");
     $usersqlcount = "SELECT SQL_CALC_FOUND_ROWS * FROM user_account";
     $userst = $conn->query("SELECT found_rows() AS totalRows");
     $userrownum = $userst->fetch_assoc();
@@ -58,10 +62,10 @@ require_once '../settings/config.php';
 
      $invoice = '34' . getRandomPars();
 
-    // update product
-     $fetchprod = "SELECT * FROM products WHERE product_id = :userid";
-     $stmt = $dbc->prepare($fetchprod);
-     $stmt->bindParam(":userid", $id);
+    // update user
+     $fetchuser = "SELECT * FROM user_account WHERE user_id = :userid";
+     $stmt = $dbc->prepare($fetchuser);
+     $stmt->bindParam(":userid", $usrid);
      $stmt->execute();
      $uprow = $stmt->fetch();
 ?>

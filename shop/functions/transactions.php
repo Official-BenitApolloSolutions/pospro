@@ -36,12 +36,20 @@
     include '../view/editsupplier.php';
   }
 
+  function processEditCustomers(){
+    include '../view/editcustomer.php';
+  }
+
   function processEditProducts(){
     include '../view/editproduct.php';
   }
   
   function processUsers(){
     include '../view/users.php';
+  }
+
+  function processEditUsers(){
+    include '../view/editusers.php';
   }
 
   ?>
